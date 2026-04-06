@@ -691,6 +691,55 @@ MonoBehaviour:
   sensX: 400
   sensY: 400
   orientation: {fileID: 1958396476}
+  Test2:
+    m_Name: Test 2
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: b6971027-d7d8-4949-a0c6-8deeec28e0bf
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 2D Vector
+      m_Id: 0c5e1955-94cb-4c9c-87a5-08854e6ddc63
+      m_Path: 2DVector
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Test 2
+      m_Flags: 4
+    - m_Name: up
+      m_Id: 452d6b8a-dcb8-4ada-bce5-a43cb1c5fb03
+      m_Path: <Gamepad>/rightStick/up
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Test 2
+      m_Flags: 8
+    - m_Name: down
+      m_Id: 20df3987-692a-41c9-8c3b-3923abb00e08
+      m_Path: <Gamepad>/rightStick/down
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Test 2
+      m_Flags: 8
+    - m_Name: left
+      m_Id: 4450e4ca-9622-4020-9eb9-375324fa1f54
+      m_Path: <Gamepad>/rightStick/left
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Test 2
+      m_Flags: 8
+    - m_Name: right
+      m_Id: fcf2627f-b76e-4eb6-911e-48176f673bcf
+      m_Path: <Gamepad>/rightStick/right
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Test 2
+      m_Flags: 8
+    m_Flags: 0
 --- !u!1 &1621704475
 GameObject:
   m_ObjectHideFlags: 0
@@ -1048,6 +1097,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1795679546}
   - component: {fileID: 1795679545}
+  - component: {fileID: 1795679547}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1100,6 +1150,69 @@ Transform:
   - {fileID: 1935886041}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1795679547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795679544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9cb194fa00cee24c8dea68573f58630, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  moveSpeed: 7
+  orientation: {fileID: 1958396476}
+  Test:
+    m_Name: Test
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 90cd5eef-5594-4b92-9273-e22e78c307f4
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 2D Vector
+      m_Id: 3e9a7740-88e1-4a69-a0b8-a2cedc93ccce
+      m_Path: 2DVector
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Test
+      m_Flags: 4
+    - m_Name: up
+      m_Id: 2cb2a6f4-7b35-4839-b58a-28a048bba271
+      m_Path: <Gamepad>/leftStick/up
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Test
+      m_Flags: 8
+    - m_Name: down
+      m_Id: 53dfdaca-5ae6-47f8-b823-b99c091f5c7b
+      m_Path: <Gamepad>/leftStick/down
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Test
+      m_Flags: 8
+    - m_Name: left
+      m_Id: 04dcad03-3e4d-4252-bf56-49b19deb3659
+      m_Path: <Gamepad>/leftStick/left
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Test
+      m_Flags: 8
+    - m_Name: right
+      m_Id: 389d3fea-48f1-4ac8-8a9c-2ae6f5846018
+      m_Path: <Gamepad>/leftStick/right
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Test
+      m_Flags: 8
+    m_Flags: 0
 --- !u!1 &1935886040
 GameObject:
   m_ObjectHideFlags: 0
