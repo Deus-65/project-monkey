@@ -1164,23 +1164,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   moveSpeed: 7
   orientation: {fileID: 1958396476}
-  jumpForce: 12
-  jumpCooldown: 1
-  airMultiplier: 10
-  jumpAction:
-    m_Name: Jump
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 7bb46115-8d1c-42aa-8ff7-6a2ac71f2ea7
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
   groundDrag: 5
   playerHeight: 2
   whatIsGround:
     serializedVersion: 2
     m_Bits: 1024
+  jumpForce: 12
+  jumpCooldown: 1
+  airMultiplier: 10
+  jumpAction:
+    m_Name: Jump
+    m_Type: 1
+    m_ExpectedControlType: Button
+    m_Id: 7bb46115-8d1c-42aa-8ff7-6a2ac71f2ea7
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: c30fb073-98c7-4aaf-a94e-a29cfb938b3b
+      m_Path: <Gamepad>/buttonSouth
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Jump
+      m_Flags: 0
+    m_Flags: 0
   Test:
     m_Name: Test
     m_Type: 0
