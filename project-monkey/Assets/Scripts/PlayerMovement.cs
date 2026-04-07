@@ -7,6 +7,15 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed;
     public Transform orientation;
 
+
+    // Yer Kontrol
+    public float groundDrag;
+
+    [Header("Ground Check")]
+    public float playerHeight;
+    public LayerMask whatIsGround;
+    bool grounded;
+   
     // Zıplama 
     [Header("Jumping")]
     public float jumpForce;
@@ -16,14 +25,6 @@ public class PlayerMovement : MonoBehaviour
 
     // Zıplama için Yeni Input Action
     [SerializeField] private InputAction jumpAction;
-
-    // Yer Kontrol
-    public float groundDrag;
-
-    [Header("Ground Check")]
-    public float playerHeight;
-    public LayerMask whatIsGround;
-    bool grounded;
 
     // Hareket Input Action'ları
     private InputAction moveAction;
