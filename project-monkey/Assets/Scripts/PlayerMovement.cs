@@ -7,21 +7,38 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed;
     public Transform orientation;
 
-    // Yeni Input Sistemi için Action tanýmlamasý
+    // ZÄ±plama 
+    [Header("Jumping")]
+    public float jumpForce;
+    public float jumpCooldown;
+    public float airMultiplier;
+    bool readyToJump;
+
+    // ZÄ±plama iÃ§in Yeni Input Action
+    [SerializeField] private InputAction jumpAction;
+
+    // Yer Kontrol
+    public float groundDrag;
+
+    [Header("Ground Check")]
+    public float playerHeight;
+    public LayerMask whatIsGround;
+    bool grounded;
+
+    // Hareket Input Action'larÄ±
     private InputAction moveAction;
-   
-    // controlleri kolayca ayarlamak için bir yöntem 
-    [SerializeField]private InputAction Test;
+    [SerializeField] private InputAction Test;
 
     float horizontalInput;
     float verticalInput;
+    bool isJumpingInput; // ZÄ±plama tuÅŸuna basÄ±lÄ±p basÄ±lmadÄ±ÄŸÄ±nÄ± tutar
 
     Vector3 moveDirection;
     Rigidbody rb;
 
     private void Awake()
     {
-        // Kod üzerinden WASD ve Ok tuþlarý için bir 2D Vector (Yön) aksiyonu oluþturuyoruz
+        // Kod Ã¼zerinden WASD ve Ok tuÅŸlarÄ±
         moveAction = new InputAction("Move", binding: "2DVector");
         moveAction.AddCompositeBinding("2DVector")
             .With("Up", "<Keyboard>/w")
@@ -32,72 +49,134 @@ public class PlayerMovement : MonoBehaviour
             .With("Down", "<Keyboard>/downArrow")
             .With("Left", "<Keyboard>/leftArrow")
             .With("Right", "<Keyboard>/rightArrow");
+
+        // ZÄ±plama aksiyonunu kod Ã¼zerinden oluÅŸturuyoruz (Ä°stersen Inspector'dan da baÄŸlayabilirsin)
+        if (jumpAction == null || jumpAction.bindings.Count == 0)
+        {
+            jumpAction = new InputAction("Jump", binding: "<Keyboard>/space");
+            jumpAction.AddBinding("<Gamepad>/buttonSouth"); // KontrolcÃ¼deki X/A tuÅŸu
+        }
     }
 
     private void OnEnable()
     {
-        // Script aktif olduðunda Input Action'ý açýyoruz
         moveAction.Enable();
-        Test.Enable();
+        Test?.Enable(); // ? iÅŸareti null ise Ã§Ã¶kmesini engeller
+        jumpAction.Enable();
 
-        // Event'lere abone oluyoruz (Subscription)
-        // performed: Tuþa basýldýðýnda veya deðer deðiþtiðinde çalýþýr
-        // canceled: Tuþ býrakýldýðýnda çalýþýr (deðerleri sýfýrlamak için gereklidir)
         moveAction.performed += OnMovementInput;
         moveAction.canceled += OnMovementInput;
-        Test.performed += OnMovementInput;
-        Test.canceled += OnMovementInput;
+
+        if (Test != null)
+        {
+            Test.performed += OnMovementInput;
+            Test.canceled += OnMovementInput;
+        }
+
+        // ZÄ±plama tuÅŸuna basÄ±ldÄ±ÄŸÄ±nÄ± dinliyoruz
+        jumpAction.performed += ctx => isJumpingInput = true;
+        jumpAction.canceled += ctx => isJumpingInput = false;
     }
 
     private void OnDisable()
     {
-        // Script kapanýrsa veya obje yok olursa hafýza sýzýntýsýný (memory leak) önlemek için abonelikten çýkýyoruz
         moveAction.performed -= OnMovementInput;
         moveAction.canceled -= OnMovementInput;
-        Test.performed -= OnMovementInput;
-        Test.canceled -= OnMovementInput;
-        
+
+        if (Test != null)
+        {
+            Test.performed -= OnMovementInput;
+            Test.canceled -= OnMovementInput;
+        }
+
+        jumpAction.performed -= ctx => isJumpingInput = true;
+        jumpAction.canceled -= ctx => isJumpingInput = false;
+
         moveAction.Disable();
-        Test.Disable();
+        Test?.Disable();
+        jumpAction.Disable();
     }
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+
+        readyToJump = true; // Oyun baÅŸladÄ±ÄŸÄ±nda zÄ±plamaya hazÄ±rÄ±z
     }
 
-    // Artýk Update içinde MyInput() çaðýrmamýza gerek yok!
-    // Sadece Fizik iþlemleri için FixedUpdate kalýyor.
+    private void Update()
+    {
+        // Ground Check
+        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+
+        // Handle drag
+        if (grounded)
+            rb.linearDamping = groundDrag;
+        else
+            rb.linearDamping = 0;
+
+        // ZÄ±plama KontrolÃ¼ (Yeni Sistem)
+        if (isJumpingInput && readyToJump && grounded)
+        {
+            readyToJump = false;
+            Jump();
+            Invoke(nameof(ResetJump), jumpCooldown); // YazÄ±m hatasÄ± dÃ¼zeltildi: reserJump -> ResetJump
+        }
+    }
+
     private void FixedUpdate()
     {
         MovePlayer();
+        SpeedControl(); // YazÄ±m hatasÄ± dÃ¼zeltildi: SpeedControle -> SpeedControl
     }
 
-    // --- CALLBACK CONTEXT KULLANAN FONKSÝYON ---
     private void OnMovementInput(InputAction.CallbackContext context)
     {
-        // context.ReadValue ile 2D Vector deðerini okuyoruz (örneðin W'ye basarsak (0, 1) gelir)
         Vector2 inputVector = context.ReadValue<Vector2>();
-
         horizontalInput = inputVector.x;
         verticalInput = inputVector.y;
     }
 
     private void MovePlayer()
     {
-        // Hareket yönünü hesapla
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
-        // Kuvvet uygula
-        rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+        // Yerdeyken
+        if (grounded)
+            rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+        // Havadayken
+        else if (!grounded)
+            rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
+    }
+
+    private void SpeedControl()
+    {
+        Vector3 flatVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
+
+        if (flatVel.magnitude > moveSpeed)
+        {
+            Vector3 limitedVel = flatVel.normalized * moveSpeed;
+            rb.linearVelocity = new Vector3(limitedVel.x, rb.linearVelocity.y, limitedVel.z);
+        }
+    }
+
+    private void Jump()
+    {
+        // HATA DÃœZELTÄ°LDÄ°: Y hÄ±zÄ±nÄ± sÄ±fÄ±rlÄ±yoruz, X ve Z'yi koruyoruz
+        rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
+
+        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+    }
+
+    private void ResetJump()
+    {
+        readyToJump = true;
     }
 
 
-
-
     /*
-    eski sisteme göre kod 
+    eski sisteme gÃ¶re kod 
 
     [Header("Movement")]
     public float moveSpeed;
