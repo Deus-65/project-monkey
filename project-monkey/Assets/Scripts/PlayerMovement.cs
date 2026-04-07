@@ -55,7 +55,8 @@ public class PlayerMovement : MonoBehaviour
         if (jumpAction == null || jumpAction.bindings.Count == 0)
         {
             jumpAction = new InputAction("Jump", binding: "<Keyboard>/space");
-            jumpAction.AddBinding("<Gamepad>/buttonSouth"); // Kontrolcüdeki X/A tuşu
+            // (deneme amaçlı de aktif hale getirildi)
+            // jumpAction.AddBinding("<Gamepad>/buttonSouth"); // Kontrolcüdeki X/A tuşu
         }
     }
 
