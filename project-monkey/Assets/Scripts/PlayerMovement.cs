@@ -19,12 +19,14 @@ public class PlayerMovement : MonoBehaviour
     // Zıplama 
     [Header("Jumping")]
     public float jumpForce;
+    public float jumpHeight;
     public float jumpCooldown;
     public float airMultiplier;
     bool readyToJump;
 
     // Zıplama için Yeni Input Action
-    [SerializeField] private InputAction jumpAction;
+    private InputAction jumpAction;
+    [SerializeField]private InputAction jumpActionGamepad;
 
     // Hareket Input Action'ları
     private InputAction moveAction;
@@ -65,6 +67,7 @@ public class PlayerMovement : MonoBehaviour
         moveAction.Enable();
         Test?.Enable(); // ? işareti null ise çökmesini engeller
         jumpAction.Enable();
+        jumpActionGamepad?.Enable();
 
         moveAction.performed += OnMovementInput;
         moveAction.canceled += OnMovementInput;
@@ -73,6 +76,12 @@ public class PlayerMovement : MonoBehaviour
         {
             Test.performed += OnMovementInput;
             Test.canceled += OnMovementInput;
+        }
+
+        if (jumpActionGamepad != null)
+        {
+            jumpActionGamepad.performed += ctx => isJumpingInput = true;
+            jumpActionGamepad.canceled += ctx => isJumpingInput = false;
         }
 
         // Zıplama tuşuna basıldığını dinliyoruz
@@ -90,6 +99,12 @@ public class PlayerMovement : MonoBehaviour
             Test.performed -= OnMovementInput;
             Test.canceled -= OnMovementInput;
         }
+        
+        if (Test != null)
+        {
+            jumpActionGamepad.performed -= ctx => isJumpingInput = true;
+            jumpActionGamepad.canceled -= ctx => isJumpingInput = false;
+        }
 
         jumpAction.performed -= ctx => isJumpingInput = true;
         jumpAction.canceled -= ctx => isJumpingInput = false;
@@ -97,6 +112,7 @@ public class PlayerMovement : MonoBehaviour
         moveAction.Disable();
         Test?.Disable();
         jumpAction.Disable();
+        jumpActionGamepad?.Disable();
     }
 
     private void Start()
@@ -104,6 +120,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
 
+        jumpForce = Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y);
         readyToJump = true; // Oyun başladığında zıplamaya hazırız
     }
 
