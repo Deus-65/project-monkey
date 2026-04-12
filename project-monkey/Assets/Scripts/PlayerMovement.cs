@@ -32,6 +32,11 @@ public class PlayerMovement : MonoBehaviour
     public float crouchYscale;
     private float startYscale;
 
+    [Header("Slope Handling")]
+    public float maxSlopeAngle;
+    private RaycastHit slopeHit;
+    private bool exitingSlope;
+
 
     // crouch için Yeni Input Action
     private InputAction crouchAction;
@@ -286,23 +291,47 @@ public class PlayerMovement : MonoBehaviour
     {
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
+        if (OnSlope() && exitingSlope)
+        {
+            rb.AddForce(GetSlopeMoveDricetion() * moveSpeed * 20f, ForceMode.Force);
+
+            if(rb.linearVelocity.y > 0) 
+                rb.AddForce(Vector3.down * 80f, ForceMode.Force);    
+        }
+
         // Yerdeyken
         if (grounded)
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
         // Havadayken
         else if (!grounded)
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
+        
+        // eğimde yer çekimini kapat
+        rb.useGravity = !OnSlope();
     }
 
     private void SpeedControl()
     {
-        Vector3 flatVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
-
-        if (flatVel.magnitude > moveSpeed)
+        // eğimde hız limiti 
+        if (OnSlope() && exitingSlope)
         {
-            Vector3 limitedVel = flatVel.normalized * moveSpeed;
-            rb.linearVelocity = new Vector3(limitedVel.x, rb.linearVelocity.y, limitedVel.z);
+            if (rb.linearVelocity.magnitude > moveSpeed) 
+                rb.linearVelocity = rb.linearVelocity.normalized * moveSpeed;
         }
+
+        // normal hız limiti
+        else
+        {
+            Vector3 flatVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
+
+            if (flatVel.magnitude > moveSpeed)
+            {
+                Vector3 limitedVel = flatVel.normalized * moveSpeed;
+                rb.linearVelocity = new Vector3(limitedVel.x, rb.linearVelocity.y, limitedVel.z);
+            }
+        }
+
+        
     }
 
     private void Jump()
@@ -310,12 +339,17 @@ public class PlayerMovement : MonoBehaviour
         // HATA DÜZELTİLDİ: Y hızını sıfırlıyoruz, X ve Z'yi koruyoruz
         rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
 
-        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse); 
+        
+        exitingSlope = true;
+
     }
 
     private void ResetJump()
-    {
+    {    
         readyToJump = true;
+     
+        exitingSlope = false;
     }
 
     // Tuşa basıldığında çalışacak temiz metot
@@ -335,4 +369,18 @@ public class PlayerMovement : MonoBehaviour
         iscrouchingInput = false;
     }
 
+    private bool OnSlope()
+    {
+        if(Physics.Raycast(transform.position, Vector3.down, out slopeHit , playerHeight * 0.5f + 0.3f))
+        {
+            float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
+            return angle < maxSlopeAngle && angle != 0; 
+        }
+        return false;
+    }
+
+    private Vector3 GetSlopeMoveDricetion()
+    {
+        return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;
+    }
 }
