@@ -1,10 +1,13 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
-    public float moveSpeed;
+    private float moveSpeed;
+    public float walkSpeed;
+    public float sprintSpeed;
     public Transform orientation;
 
 
@@ -24,6 +27,12 @@ public class PlayerMovement : MonoBehaviour
     public float airMultiplier;
     bool readyToJump;
 
+    // koşu için Yeni Input Action
+    private InputAction sprintAction;
+    [SerializeField] private InputAction sprintActionGamepad;
+   
+
+
     // Zıplama için Yeni Input Action
     private InputAction jumpAction;
     [SerializeField]private InputAction jumpActionGamepad;
@@ -35,12 +44,22 @@ public class PlayerMovement : MonoBehaviour
     float horizontalInput;
     float verticalInput;
     bool isJumpingInput; // Zıplama tuşuna basılıp basılmadığını tutar
+    bool isSprintingInput; 
 
     Vector3 moveDirection;
     Rigidbody rb;
 
+    public MovementState state;
+    public enum MovementState
+    {
+        walking,
+        sprinting,
+        air
+    }
+
     private void Awake()
     {
+
         // Kod üzerinden WASD ve Ok tuşları
         moveAction = new InputAction("Move", binding: "2DVector");
         moveAction.AddCompositeBinding("2DVector")
@@ -60,17 +79,34 @@ public class PlayerMovement : MonoBehaviour
             // (deneme amaçlı de aktif hale getirildi)
             // jumpAction.AddBinding("<Gamepad>/buttonSouth"); // Kontrolcüdeki X/A tuşu
         }
+
+        if (sprintAction == null || sprintAction.bindings.Count == 0)
+        {
+            sprintAction = new InputAction("sprint", binding: "<Keyboard>/LeftShift");
+        }
+
     }
 
     private void OnEnable()
     {
+        //klavye için
         moveAction.Enable();
-        Test?.Enable(); // ? işareti null ise çökmesini engeller
         jumpAction.Enable();
+        sprintAction.Enable();
+        // gamepad için
+        Test?.Enable();
         jumpActionGamepad?.Enable();
+        sprintActionGamepad?.Enable();
 
         moveAction.performed += OnMovementInput;
         moveAction.canceled += OnMovementInput;
+               
+        // Zıplama tuşuna basıldığını dinliyoruz
+        jumpAction.performed += ctx => isJumpingInput = true;
+        jumpAction.canceled += ctx => isJumpingInput = false;
+
+        sprintAction.performed += ctx => isSprintingInput = true;
+        sprintAction.canceled += ctx => isSprintingInput = false;
 
         if (Test != null)
         {
@@ -83,36 +119,50 @@ public class PlayerMovement : MonoBehaviour
             jumpActionGamepad.performed += ctx => isJumpingInput = true;
             jumpActionGamepad.canceled += ctx => isJumpingInput = false;
         }
+        
+        if (sprintActionGamepad != null)
+        {
+            sprintActionGamepad.performed += ctx => isSprintingInput = true;
+            sprintActionGamepad.canceled += ctx => isSprintingInput = false;
+        }
 
-        // Zıplama tuşuna basıldığını dinliyoruz
-        jumpAction.performed += ctx => isJumpingInput = true;
-        jumpAction.canceled += ctx => isJumpingInput = false;
     }
 
     private void OnDisable()
     {
         moveAction.performed -= OnMovementInput;
         moveAction.canceled -= OnMovementInput;
-
+        jumpAction.performed -= ctx => isJumpingInput = true;
+        jumpAction.canceled -= ctx => isJumpingInput = false;
+        sprintAction.performed -= ctx => isSprintingInput = true;
+        sprintAction.canceled -= ctx => isSprintingInput = false;
+        
         if (Test != null)
         {
             Test.performed -= OnMovementInput;
-            Test.canceled -= OnMovementInput;
+            Test.canceled -= OnMovementInput;           
         }
-        
-        if (Test != null)
+
+        if (jumpActionGamepad != null)
         {
             jumpActionGamepad.performed -= ctx => isJumpingInput = true;
             jumpActionGamepad.canceled -= ctx => isJumpingInput = false;
         }
 
-        jumpAction.performed -= ctx => isJumpingInput = true;
-        jumpAction.canceled -= ctx => isJumpingInput = false;
+        if (sprintActionGamepad != null)
+        {
+            sprintActionGamepad.performed -= ctx => isSprintingInput = true;
+            sprintActionGamepad.canceled -= ctx => isSprintingInput = false;
+        }
 
+        // klavye için
         moveAction.Disable();
-        Test?.Disable();
         jumpAction.Disable();
+        sprintAction.Disable();
+        // gamepad için
+        Test?.Disable();
         jumpActionGamepad?.Disable();
+        sprintActionGamepad?.Disable();
     }
 
     private void Start()
@@ -128,6 +178,8 @@ public class PlayerMovement : MonoBehaviour
     {
         // Ground Check
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+        
+        StateHandler();
 
         // Handle drag
         if (grounded)
@@ -147,7 +199,8 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         MovePlayer();
-        SpeedControl(); // Yazım hatası düzeltildi: SpeedControle -> SpeedControl
+        SpeedControl(); 
+       
     }
 
     private void OnMovementInput(InputAction.CallbackContext context)
@@ -155,6 +208,25 @@ public class PlayerMovement : MonoBehaviour
         Vector2 inputVector = context.ReadValue<Vector2>();
         horizontalInput = inputVector.x;
         verticalInput = inputVector.y;
+    }
+ 
+    private void StateHandler()
+    {
+        // Sprinting mode
+        if (grounded && isSprintingInput)
+        {
+            state = MovementState.sprinting;
+            moveSpeed = sprintSpeed;
+        }
+        else if (grounded)
+        {
+            state = MovementState.walking;
+            moveSpeed = walkSpeed;
+        }
+        else
+        {
+            state = MovementState.air;
+        }
     }
 
     private void MovePlayer()
@@ -192,53 +264,5 @@ public class PlayerMovement : MonoBehaviour
     {
         readyToJump = true;
     }
-
-
-    /*
-    eski sisteme göre kod 
-
-    [Header("Movement")]
-    public float moveSpeed;
-
-    public Transform orientation;
-
-    float horizontalInput;
-    float verticalInput;
-
-    Vector3 moveDirection;
-
-    Rigidbody rb;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    private void Start()
-    {
-        rb = GetComponent<Rigidbody>();
-        rb.freezeRotation = true;
-    }
-    
-    // Update is called once per frame
-    private void Update()
-    {
-        MyInput();
-    }
-
-    private void FixedUpdate()
-    {
-        MovePlayer();
-    }
-
-    private void MyInput()
-    {
-        horizontalInput = Input.GetAxisRaw("Horizantal");
-        verticalInput = Input.GetAxisRaw("Vertical");
-    }
-
-    private void MovePlayer()
-    {
-        // calculate movement direction
-        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
-        
-        rb.AddForce(moveDirection.normalized * moveSpeed * 10f,ForceMode.Force);
-    }
-    */
+   
 }
