@@ -27,24 +27,33 @@ public class PlayerMovement : MonoBehaviour
     public float airMultiplier;
     bool readyToJump;
 
+    [Header("Crouching")]
+    public float crouchSpeed;
+    public float crouchYscale;
+    private float startYscale;
+
+
+    // crouch için Yeni Input Action
+    private InputAction crouchAction;
+    [SerializeField] private InputAction crouchActionGamepad;
+
     // koşu için Yeni Input Action
     private InputAction sprintAction;
     [SerializeField] private InputAction sprintActionGamepad;
    
-
-
     // Zıplama için Yeni Input Action
     private InputAction jumpAction;
     [SerializeField]private InputAction jumpActionGamepad;
 
     // Hareket Input Action'ları
     private InputAction moveAction;
-    [SerializeField] private InputAction Test;
+    [SerializeField] private InputAction moveActinGamepad;
 
     float horizontalInput;
     float verticalInput;
     bool isJumpingInput; // Zıplama tuşuna basılıp basılmadığını tutar
-    bool isSprintingInput; 
+    bool isSprintingInput;
+    bool iscrouchingInput;
 
     Vector3 moveDirection;
     Rigidbody rb;
@@ -54,7 +63,8 @@ public class PlayerMovement : MonoBehaviour
     {
         walking,
         sprinting,
-        air
+        air,
+        crouching
     }
 
     private void Awake()
@@ -66,23 +76,21 @@ public class PlayerMovement : MonoBehaviour
             .With("Up", "<Keyboard>/w")
             .With("Down", "<Keyboard>/s")
             .With("Left", "<Keyboard>/a")
-            .With("Right", "<Keyboard>/d")
-            .With("Up", "<Keyboard>/upArrow")
-            .With("Down", "<Keyboard>/downArrow")
-            .With("Left", "<Keyboard>/leftArrow")
-            .With("Right", "<Keyboard>/rightArrow");
-
-        // Zıplama aksiyonunu kod üzerinden oluşturuyoruz (İstersen Inspector'dan da bağlayabilirsin)
+            .With("Right", "<Keyboard>/d");
+          
         if (jumpAction == null || jumpAction.bindings.Count == 0)
         {
             jumpAction = new InputAction("Jump", binding: "<Keyboard>/space");
-            // (deneme amaçlı de aktif hale getirildi)
-            // jumpAction.AddBinding("<Gamepad>/buttonSouth"); // Kontrolcüdeki X/A tuşu
         }
 
         if (sprintAction == null || sprintAction.bindings.Count == 0)
         {
             sprintAction = new InputAction("sprint", binding: "<Keyboard>/LeftShift");
+        }
+
+        if (crouchAction == null || crouchAction.bindings.Count == 0)
+        {
+            crouchAction = new InputAction("crouch", binding: "<Keyboard>/ctrl");
         }
 
     }
@@ -93,10 +101,12 @@ public class PlayerMovement : MonoBehaviour
         moveAction.Enable();
         jumpAction.Enable();
         sprintAction.Enable();
+        crouchAction.Enable();
         // gamepad için
-        Test?.Enable();
+        moveActinGamepad?.Enable();
         jumpActionGamepad?.Enable();
         sprintActionGamepad?.Enable();
+        crouchActionGamepad?.Enable();
 
         moveAction.performed += OnMovementInput;
         moveAction.canceled += OnMovementInput;
@@ -108,10 +118,13 @@ public class PlayerMovement : MonoBehaviour
         sprintAction.performed += ctx => isSprintingInput = true;
         sprintAction.canceled += ctx => isSprintingInput = false;
 
-        if (Test != null)
+        crouchAction.performed += OnCrouchPerformed;
+        crouchAction.canceled += OnCrouchCanceled;
+
+        if (moveActinGamepad != null)
         {
-            Test.performed += OnMovementInput;
-            Test.canceled += OnMovementInput;
+            moveActinGamepad.performed += OnMovementInput;
+            moveActinGamepad.canceled += OnMovementInput;
         }
 
         if (jumpActionGamepad != null)
@@ -125,6 +138,12 @@ public class PlayerMovement : MonoBehaviour
             sprintActionGamepad.performed += ctx => isSprintingInput = true;
             sprintActionGamepad.canceled += ctx => isSprintingInput = false;
         }
+        
+        if (crouchActionGamepad != null)
+        {
+            crouchActionGamepad.performed += OnCrouchPerformed;
+            crouchActionGamepad.canceled += OnCrouchCanceled;
+        }
 
     }
 
@@ -132,15 +151,20 @@ public class PlayerMovement : MonoBehaviour
     {
         moveAction.performed -= OnMovementInput;
         moveAction.canceled -= OnMovementInput;
+
         jumpAction.performed -= ctx => isJumpingInput = true;
         jumpAction.canceled -= ctx => isJumpingInput = false;
+
         sprintAction.performed -= ctx => isSprintingInput = true;
         sprintAction.canceled -= ctx => isSprintingInput = false;
-        
-        if (Test != null)
+
+        crouchAction.performed -= OnCrouchPerformed;
+        crouchAction.canceled -= OnCrouchCanceled;
+
+        if (moveActinGamepad != null)
         {
-            Test.performed -= OnMovementInput;
-            Test.canceled -= OnMovementInput;           
+            moveActinGamepad.performed -= OnMovementInput;
+            moveActinGamepad.canceled -= OnMovementInput;           
         }
 
         if (jumpActionGamepad != null)
@@ -154,15 +178,23 @@ public class PlayerMovement : MonoBehaviour
             sprintActionGamepad.performed -= ctx => isSprintingInput = true;
             sprintActionGamepad.canceled -= ctx => isSprintingInput = false;
         }
+        
+        if (crouchActionGamepad != null)
+        {
+            crouchActionGamepad.performed -= OnCrouchPerformed;
+            crouchActionGamepad.canceled -= OnCrouchCanceled;
+        }
 
         // klavye için
         moveAction.Disable();
         jumpAction.Disable();
         sprintAction.Disable();
+        crouchAction.Disable();
         // gamepad için
-        Test?.Disable();
+        moveActinGamepad?.Disable();
         jumpActionGamepad?.Disable();
         sprintActionGamepad?.Disable();
+        crouchActionGamepad?.Disable();
     }
 
     private void Start()
@@ -170,8 +202,11 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
 
+        startYscale = transform.localScale.y;
+
         jumpForce = Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y);
         readyToJump = true; // Oyun başladığında zıplamaya hazırız
+
     }
 
     private void Update()
@@ -194,6 +229,19 @@ public class PlayerMovement : MonoBehaviour
             Jump();
             Invoke(nameof(ResetJump), jumpCooldown); // Yazım hatası düzeltildi: reserJump -> ResetJump
         }
+
+        
+        if (iscrouchingInput && grounded)
+        { 
+           transform.localScale = new Vector3(transform.localScale.x,crouchYscale,transform.localScale.z);
+           
+        }
+        else
+        {
+           transform.localScale = new Vector3(transform.localScale.x, startYscale, transform.localScale.z);
+        }
+        
+
     }
 
     private void FixedUpdate()
@@ -213,7 +261,12 @@ public class PlayerMovement : MonoBehaviour
     private void StateHandler()
     {
         // Sprinting mode
-        if (grounded && isSprintingInput)
+        if (grounded && iscrouchingInput)
+        {
+            state = MovementState.crouching;
+            moveSpeed = crouchSpeed;
+        }
+        else if (grounded && isSprintingInput)
         {
             state = MovementState.sprinting;
             moveSpeed = sprintSpeed;
@@ -264,5 +317,22 @@ public class PlayerMovement : MonoBehaviour
     {
         readyToJump = true;
     }
-   
+
+    // Tuşa basıldığında çalışacak temiz metot
+    private void OnCrouchPerformed(InputAction.CallbackContext context)
+    {
+        iscrouchingInput = true;
+
+        if (grounded)
+        {
+            rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
+        }
+    }
+
+    // Tuş bırakıldığında çalışacak temiz metot
+    private void OnCrouchCanceled(InputAction.CallbackContext context)
+    {
+        iscrouchingInput = false;
+    }
+
 }
