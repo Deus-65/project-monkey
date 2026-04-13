@@ -119,6 +119,64 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &266251692
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 3a137becdb0ff3148aecc36320ababbf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 53.45737
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3a137becdb0ff3148aecc36320ababbf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.000000058619577
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3a137becdb0ff3148aecc36320ababbf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 61.173363
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3a137becdb0ff3148aecc36320ababbf, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.20971966
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3a137becdb0ff3148aecc36320ababbf, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3a137becdb0ff3148aecc36320ababbf, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.97776157
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3a137becdb0ff3148aecc36320ababbf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3a137becdb0ff3148aecc36320ababbf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3a137becdb0ff3148aecc36320ababbf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -155.788
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3a137becdb0ff3148aecc36320ababbf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3a137becdb0ff3148aecc36320ababbf, type: 3}
+      propertyPath: m_Name
+      value: "\xE7al\u0131\u015Fan toon shader k\u0131lavuzu pls \xE7al\u0131\u015F"
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: 7869873546869171050, guid: 3a137becdb0ff3148aecc36320ababbf, type: 3}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3a137becdb0ff3148aecc36320ababbf, type: 3}
 --- !u!1 &297713298
 GameObject:
   m_ObjectHideFlags: 0
@@ -476,6 +534,126 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!1001 &690392488
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: fd4a97535626085429ae0d18e8b9b294, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 48.53477
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fd4a97535626085429ae0d18e8b9b294, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.0000033539618
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fd4a97535626085429ae0d18e8b9b294, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 56.81423
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fd4a97535626085429ae0d18e8b9b294, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.16897584
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fd4a97535626085429ae0d18e8b9b294, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.007382587
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fd4a97535626085429ae0d18e8b9b294, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.97892034
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fd4a97535626085429ae0d18e8b9b294, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.11448836
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fd4a97535626085429ae0d18e8b9b294, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -12.806
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fd4a97535626085429ae0d18e8b9b294, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -160.062
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: fd4a97535626085429ae0d18e8b9b294, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -3.124
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fd4a97535626085429ae0d18e8b9b294, type: 3}
+      propertyPath: m_Name
+      value: "\xE7al\u0131\u015Fan toon shader k\u0131lavuzu"
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: 7869873546869171050, guid: fd4a97535626085429ae0d18e8b9b294, type: 3}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fd4a97535626085429ae0d18e8b9b294, type: 3}
+--- !u!1001 &744530582
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: da18f9284147bcb4abb334b36897fdd1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 50.63
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: da18f9284147bcb4abb334b36897fdd1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: da18f9284147bcb4abb334b36897fdd1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 61.68
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: da18f9284147bcb4abb334b36897fdd1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.119580805
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: da18f9284147bcb4abb334b36897fdd1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: da18f9284147bcb4abb334b36897fdd1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.9928245
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: da18f9284147bcb4abb334b36897fdd1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: da18f9284147bcb4abb334b36897fdd1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: da18f9284147bcb4abb334b36897fdd1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 166.264
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: da18f9284147bcb4abb334b36897fdd1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: da18f9284147bcb4abb334b36897fdd1, type: 3}
+      propertyPath: m_Name
+      value: "\xE7al\u0131\u015Fan toon shader k\u0131lavuzu 2"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8569425164699422647, guid: da18f9284147bcb4abb334b36897fdd1, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: 7869873546869171050, guid: da18f9284147bcb4abb334b36897fdd1, type: 3}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: da18f9284147bcb4abb334b36897fdd1, type: 3}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -646,3 +824,6 @@ SceneRoots:
   - {fileID: 832575519}
   - {fileID: 297713301}
   - {fileID: 1495825701}
+  - {fileID: 690392488}
+  - {fileID: 744530582}
+  - {fileID: 266251692}
