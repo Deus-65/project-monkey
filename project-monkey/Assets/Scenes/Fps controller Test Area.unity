@@ -1100,6 +1100,22 @@ PrefabInstance:
       propertyPath: useFootsteps
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: interactionDistance
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: interactionRayPoint.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: interactionRayPoint.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: interactionLayer.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
     - target: {fileID: 672099872298955455, guid: be5c62aa157692941837637cb82e0657, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1143,6 +1159,14 @@ PrefabInstance:
     - target: {fileID: 5729715445701916266, guid: be5c62aa157692941837637cb82e0657, type: 3}
       propertyPath: m_Name
       value: FirstPersonController
+      objectReference: {fileID: 0}
+    - target: {fileID: 5729715445701916266, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5729715445701916266, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1782,6 +1806,7 @@ GameObject:
   - component: {fileID: 652152012}
   - component: {fileID: 652152011}
   - component: {fileID: 652152010}
+  - component: {fileID: 652152017}
   m_Layer: 0
   m_Name: Cube (3)
   m_TagString: Untagged
@@ -2136,6 +2161,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &652152017
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652152009}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4, y: 1.1757327, z: 4}
+  m_Center: {x: 0, y: 0.087866426, z: 0}
 --- !u!43 &683571580
 Mesh:
   m_ObjectHideFlags: 0
