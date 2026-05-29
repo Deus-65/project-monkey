@@ -1097,12 +1097,116 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: canZoom
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: useStamina
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: canInteract
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
       propertyPath: useFootsteps
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimGamepad.m_Name
+      value: Aim Gamepad
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: jumpAction.m_Name
+      value: Jump
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: jumpAction.m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: lookAction.m_Name
+      value: Look
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveAction.m_Name
+      value: Move
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: zoomAction.m_Name
+      value: Zoom
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: zoomAction.m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimKeyborad.m_Name
+      value: Aim Keyborad
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: jumpGamepad.m_Name
+      value: Jump Gamepad
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveGamepad.m_Name
+      value: Move Gamepad
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: zoomGamepad.m_Name
+      value: Zoom Gamepad
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: crouchAction.m_Name
+      value: Crouch
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: crouchAction.m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
       propertyPath: interactionDistance
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: jumpKeyborad.m_Name
+      value: Jump Keyborad
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveKeyborad.m_Name
+      value: Move Keyborad
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: sprintAction.m_Name
+      value: Sprint
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: sprintAction.m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: zoomKeyborad.m_Name
+      value: Zoom Keyborad
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: crouchGamepad.m_Name
+      value: Crouch Gamepad
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: sprintGamepad.m_Name
+      value: Sprint Gamepad
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: crouchKeyborad.m_Name
+      value: Crouch Keyborad
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: interactAction.m_Name
+      value: Interact
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: interactAction.m_Type
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
       propertyPath: interactionRayPoint.x
@@ -1113,8 +1217,916 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: sprintKeyborad.m_Name
+      value: Sprint Keyborad
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: interactGamepad.m_Name
+      value: Interact Gamepad
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: interactKeyborad.m_Name
+      value: Interact Keyborad
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
       propertyPath: interactionLayer.m_Bits
       value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: jumpAction.m_ExpectedControlType
+      value: Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: lookAction.m_ExpectedControlType
+      value: Vector2
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveAction.m_ExpectedControlType
+      value: Vector2
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: zoomAction.m_ExpectedControlType
+      value: Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: crouchAction.m_ExpectedControlType
+      value: Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: sprintAction.m_ExpectedControlType
+      value: Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: interactAction.m_ExpectedControlType
+      value: Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimGamepad.m_SingletonActionBindings.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: jumpAction.m_SingletonActionBindings.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: lookAction.m_SingletonActionBindings.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveAction.m_SingletonActionBindings.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: zoomAction.m_SingletonActionBindings.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimKeyborad.m_SingletonActionBindings.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: jumpGamepad.m_SingletonActionBindings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveGamepad.m_SingletonActionBindings.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: zoomGamepad.m_SingletonActionBindings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: crouchAction.m_SingletonActionBindings.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: jumpKeyborad.m_SingletonActionBindings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveKeyborad.m_SingletonActionBindings.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: sprintAction.m_SingletonActionBindings.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: zoomKeyborad.m_SingletonActionBindings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: crouchGamepad.m_SingletonActionBindings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: sprintGamepad.m_SingletonActionBindings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: crouchKeyborad.m_SingletonActionBindings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: interactAction.m_SingletonActionBindings.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: sprintKeyborad.m_SingletonActionBindings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: interactGamepad.m_SingletonActionBindings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: interactKeyborad.m_SingletonActionBindings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimGamepad.m_SingletonActionBindings.Array.data[0].m_Id
+      value: ab55a5be-da7b-4f76-baae-748d98b51703
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimGamepad.m_SingletonActionBindings.Array.data[1].m_Id
+      value: 86aeac0f-85ea-4532-9138-6476e6787ade
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimGamepad.m_SingletonActionBindings.Array.data[2].m_Id
+      value: a95ce02f-f58c-40a5-ba1b-3fe0da763fc4
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimGamepad.m_SingletonActionBindings.Array.data[3].m_Id
+      value: d5d526a3-971c-46b7-96f0-06359a5f9610
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimGamepad.m_SingletonActionBindings.Array.data[4].m_Id
+      value: bbd14232-cd3d-4751-9ebc-348adcdc4aca
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: jumpAction.m_SingletonActionBindings.Array.data[0].m_Id
+      value: 835b41fd-eb94-4ab8-ab95-cb43073dc8fb
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: jumpAction.m_SingletonActionBindings.Array.data[1].m_Id
+      value: 9355755d-472a-4ec3-b2bb-db0e1c51973a
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: jumpAction.m_SingletonActionBindings.Array.data[2].m_Id
+      value: 15c6036d-a079-4099-adc0-524fb56e3d24
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: lookAction.m_SingletonActionBindings.Array.data[0].m_Id
+      value: 8699e896-79da-4178-a817-0e244b93aa48
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: lookAction.m_SingletonActionBindings.Array.data[1].m_Id
+      value: 85c2dfcc-5968-4510-99a0-765c7e7e5ca9
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveAction.m_SingletonActionBindings.Array.data[0].m_Id
+      value: 0ef7e5fe-8e10-4528-adae-a219db7b6589
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveAction.m_SingletonActionBindings.Array.data[1].m_Id
+      value: 0b52e5fd-6317-4140-ae86-62997e5cfd9c
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveAction.m_SingletonActionBindings.Array.data[2].m_Id
+      value: f116ef04-ca89-4af4-9949-b990e1964386
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveAction.m_SingletonActionBindings.Array.data[3].m_Id
+      value: 83d90916-5229-42ad-a842-7a05d2af6daa
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveAction.m_SingletonActionBindings.Array.data[4].m_Id
+      value: e31e4397-dd12-4a9d-8c7d-3df3f3193ce3
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveAction.m_SingletonActionBindings.Array.data[5].m_Id
+      value: 74f6a2f9-e69e-4552-835d-4b28f92b2a89
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: zoomAction.m_SingletonActionBindings.Array.data[0].m_Id
+      value: 06557778-dd0f-4d23-ae7d-7f466252f3cd
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: zoomAction.m_SingletonActionBindings.Array.data[1].m_Id
+      value: 8ea7eaec-c2aa-4321-baa4-cbf7c2720df5
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimKeyborad.m_SingletonActionBindings.Array.data[0].m_Id
+      value: 5e433951-9b8c-42ec-baa8-4eeb6494560a
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimKeyborad.m_SingletonActionBindings.Array.data[1].m_Id
+      value: 5604a706-70f9-40b3-927b-f5593967acbe
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimKeyborad.m_SingletonActionBindings.Array.data[2].m_Id
+      value: cd2e00e4-3feb-4de0-b5f3-91a4c330498c
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimKeyborad.m_SingletonActionBindings.Array.data[3].m_Id
+      value: e6df3ff2-1dad-4bb7-9678-6f0c90802edf
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimKeyborad.m_SingletonActionBindings.Array.data[4].m_Id
+      value: 3bc6f7e3-c9c3-4885-9c3b-32a6e96409c3
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: jumpGamepad.m_SingletonActionBindings.Array.data[0].m_Id
+      value: 6e17ae93-b104-489a-a401-679343db91cf
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveGamepad.m_SingletonActionBindings.Array.data[0].m_Id
+      value: e1bee07a-b8b9-4c7a-b49f-851fe2902427
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveGamepad.m_SingletonActionBindings.Array.data[1].m_Id
+      value: b9322e8f-ad0b-4d45-afa4-0d91f430158e
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveGamepad.m_SingletonActionBindings.Array.data[2].m_Id
+      value: d5be2aa2-bea3-4ac0-a9f1-f2274f52ef8f
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveGamepad.m_SingletonActionBindings.Array.data[3].m_Id
+      value: e024259f-51c7-41c5-bbb9-7687eebd7e23
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveGamepad.m_SingletonActionBindings.Array.data[4].m_Id
+      value: 9072a927-69fb-4ee8-8746-3a4805500783
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: zoomGamepad.m_SingletonActionBindings.Array.data[0].m_Id
+      value: b218595e-5642-43ec-a847-aafb524f4e31
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimGamepad.m_SingletonActionBindings.Array.data[0].m_Name
+      value: 2D Vector
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimGamepad.m_SingletonActionBindings.Array.data[0].m_Path
+      value: 2DVector
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimGamepad.m_SingletonActionBindings.Array.data[1].m_Name
+      value: up
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimGamepad.m_SingletonActionBindings.Array.data[1].m_Path
+      value: <Gamepad>/rightStick/up
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimGamepad.m_SingletonActionBindings.Array.data[2].m_Name
+      value: down
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimGamepad.m_SingletonActionBindings.Array.data[2].m_Path
+      value: <Gamepad>/rightStick/down
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimGamepad.m_SingletonActionBindings.Array.data[3].m_Name
+      value: left
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimGamepad.m_SingletonActionBindings.Array.data[3].m_Path
+      value: <Gamepad>/rightStick/left
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimGamepad.m_SingletonActionBindings.Array.data[4].m_Name
+      value: right
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimGamepad.m_SingletonActionBindings.Array.data[4].m_Path
+      value: <Gamepad>/rightStick/right
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: crouchAction.m_SingletonActionBindings.Array.data[0].m_Id
+      value: a91715fa-8c52-463d-9085-7372e39ef8c7
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: crouchAction.m_SingletonActionBindings.Array.data[1].m_Id
+      value: a5626180-71aa-43a8-9c57-5a32db324597
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: jumpAction.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Keyboard>/space
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: jumpAction.m_SingletonActionBindings.Array.data[1].m_Path
+      value: <Gamepad>/buttonSouth
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: jumpKeyborad.m_SingletonActionBindings.Array.data[0].m_Id
+      value: 8fa7a377-8266-4718-a999-65126ba73e6c
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: lookAction.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Mouse>/delta
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: lookAction.m_SingletonActionBindings.Array.data[1].m_Path
+      value: <Gamepad>/rightStick
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveAction.m_SingletonActionBindings.Array.data[0].m_Name
+      value: 2D Vector
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveAction.m_SingletonActionBindings.Array.data[0].m_Path
+      value: 2DVector
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveAction.m_SingletonActionBindings.Array.data[1].m_Name
+      value: up
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveAction.m_SingletonActionBindings.Array.data[1].m_Path
+      value: <Keyboard>/w
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveAction.m_SingletonActionBindings.Array.data[2].m_Name
+      value: down
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveAction.m_SingletonActionBindings.Array.data[2].m_Path
+      value: <Keyboard>/s
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveAction.m_SingletonActionBindings.Array.data[3].m_Name
+      value: left
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveAction.m_SingletonActionBindings.Array.data[3].m_Path
+      value: <Keyboard>/a
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveAction.m_SingletonActionBindings.Array.data[4].m_Name
+      value: right
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveAction.m_SingletonActionBindings.Array.data[4].m_Path
+      value: <Keyboard>/d
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveAction.m_SingletonActionBindings.Array.data[5].m_Path
+      value: <Gamepad>/leftStick
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveKeyborad.m_SingletonActionBindings.Array.data[0].m_Id
+      value: 84e83833-44e0-42dd-9c35-3a5ed73feb10
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveKeyborad.m_SingletonActionBindings.Array.data[1].m_Id
+      value: 7a1f376b-f8c9-44f1-9604-96929d4b2944
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveKeyborad.m_SingletonActionBindings.Array.data[2].m_Id
+      value: 7e1bacf5-15c3-4f98-a9da-6de6c800b728
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveKeyborad.m_SingletonActionBindings.Array.data[3].m_Id
+      value: 1b733159-1809-46e4-92c4-e0e87ba8b6c7
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveKeyborad.m_SingletonActionBindings.Array.data[4].m_Id
+      value: d0bcd640-9c0f-4878-acc5-96a2d8b38c3f
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: sprintAction.m_SingletonActionBindings.Array.data[0].m_Id
+      value: f84ad559-823f-4601-88dc-1abc52bfa396
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: sprintAction.m_SingletonActionBindings.Array.data[1].m_Id
+      value: 009eebe7-b158-4a15-a287-8d3c427850db
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: zoomAction.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Mouse>/rightButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: zoomAction.m_SingletonActionBindings.Array.data[1].m_Path
+      value: <Gamepad>/leftTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: zoomKeyborad.m_SingletonActionBindings.Array.data[0].m_Id
+      value: fbfb832d-b4fa-4a18-aaec-5f7669660f09
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimGamepad.m_SingletonActionBindings.Array.data[0].m_Flags
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimGamepad.m_SingletonActionBindings.Array.data[1].m_Flags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimGamepad.m_SingletonActionBindings.Array.data[2].m_Flags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimGamepad.m_SingletonActionBindings.Array.data[3].m_Flags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimGamepad.m_SingletonActionBindings.Array.data[4].m_Flags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimKeyborad.m_SingletonActionBindings.Array.data[0].m_Name
+      value: 2D Vector
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimKeyborad.m_SingletonActionBindings.Array.data[0].m_Path
+      value: 2DVector
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimKeyborad.m_SingletonActionBindings.Array.data[1].m_Name
+      value: up
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimKeyborad.m_SingletonActionBindings.Array.data[1].m_Path
+      value: <Mouse>/delta/up
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimKeyborad.m_SingletonActionBindings.Array.data[2].m_Name
+      value: down
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimKeyborad.m_SingletonActionBindings.Array.data[2].m_Path
+      value: <Mouse>/delta/down
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimKeyborad.m_SingletonActionBindings.Array.data[3].m_Name
+      value: left
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimKeyborad.m_SingletonActionBindings.Array.data[3].m_Path
+      value: <Mouse>/delta/left
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimKeyborad.m_SingletonActionBindings.Array.data[4].m_Name
+      value: right
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimKeyborad.m_SingletonActionBindings.Array.data[4].m_Path
+      value: <Mouse>/delta/right
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: crouchGamepad.m_SingletonActionBindings.Array.data[0].m_Id
+      value: b1439208-d280-48c8-8467-35b72854c661
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: jumpGamepad.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Gamepad>/buttonSouth
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveAction.m_SingletonActionBindings.Array.data[0].m_Flags
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveAction.m_SingletonActionBindings.Array.data[1].m_Flags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveAction.m_SingletonActionBindings.Array.data[2].m_Flags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveAction.m_SingletonActionBindings.Array.data[3].m_Flags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveAction.m_SingletonActionBindings.Array.data[4].m_Flags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveGamepad.m_SingletonActionBindings.Array.data[0].m_Name
+      value: 2D Vector
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveGamepad.m_SingletonActionBindings.Array.data[0].m_Path
+      value: 2DVector
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveGamepad.m_SingletonActionBindings.Array.data[1].m_Name
+      value: up
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveGamepad.m_SingletonActionBindings.Array.data[1].m_Path
+      value: <Gamepad>/leftStick/up
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveGamepad.m_SingletonActionBindings.Array.data[2].m_Name
+      value: down
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveGamepad.m_SingletonActionBindings.Array.data[2].m_Path
+      value: <Gamepad>/leftStick/down
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveGamepad.m_SingletonActionBindings.Array.data[3].m_Name
+      value: left
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveGamepad.m_SingletonActionBindings.Array.data[3].m_Path
+      value: <Gamepad>/leftStick/left
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveGamepad.m_SingletonActionBindings.Array.data[4].m_Name
+      value: right
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveGamepad.m_SingletonActionBindings.Array.data[4].m_Path
+      value: <Gamepad>/leftStick/right
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: sprintGamepad.m_SingletonActionBindings.Array.data[0].m_Id
+      value: 6bd269a2-d6f8-4035-a6d3-69b170facb43
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: zoomGamepad.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Gamepad>/leftShoulder
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimGamepad.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Aim Gamepad
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimGamepad.m_SingletonActionBindings.Array.data[1].m_Action
+      value: Aim Gamepad
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimGamepad.m_SingletonActionBindings.Array.data[2].m_Action
+      value: Aim Gamepad
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimGamepad.m_SingletonActionBindings.Array.data[3].m_Action
+      value: Aim Gamepad
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimGamepad.m_SingletonActionBindings.Array.data[4].m_Action
+      value: Aim Gamepad
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimKeyborad.m_SingletonActionBindings.Array.data[0].m_Flags
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimKeyborad.m_SingletonActionBindings.Array.data[1].m_Flags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimKeyborad.m_SingletonActionBindings.Array.data[2].m_Flags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimKeyborad.m_SingletonActionBindings.Array.data[3].m_Flags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimKeyborad.m_SingletonActionBindings.Array.data[4].m_Flags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: crouchAction.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Keyboard>/leftCtrl
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: crouchAction.m_SingletonActionBindings.Array.data[1].m_Path
+      value: <Gamepad>/leftStickPress
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: crouchKeyborad.m_SingletonActionBindings.Array.data[0].m_Id
+      value: 29ade64c-c80e-47f2-b121-a9cee494e08f
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: interactAction.m_SingletonActionBindings.Array.data[0].m_Id
+      value: 2af47f02-9daa-4ebd-8ba7-01fa3a7ebbec
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: interactAction.m_SingletonActionBindings.Array.data[1].m_Id
+      value: c9b481bc-e450-42b6-b463-07f94efdf47e
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: jumpAction.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Jump
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: jumpAction.m_SingletonActionBindings.Array.data[1].m_Action
+      value: Jump
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: jumpAction.m_SingletonActionBindings.Array.data[2].m_Action
+      value: Jump
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: jumpKeyborad.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Keyboard>/space
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: lookAction.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Look
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: lookAction.m_SingletonActionBindings.Array.data[1].m_Action
+      value: Look
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveAction.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Move
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveAction.m_SingletonActionBindings.Array.data[1].m_Action
+      value: Move
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveAction.m_SingletonActionBindings.Array.data[2].m_Action
+      value: Move
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveAction.m_SingletonActionBindings.Array.data[3].m_Action
+      value: Move
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveAction.m_SingletonActionBindings.Array.data[4].m_Action
+      value: Move
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveAction.m_SingletonActionBindings.Array.data[5].m_Action
+      value: Move
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveGamepad.m_SingletonActionBindings.Array.data[0].m_Flags
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveGamepad.m_SingletonActionBindings.Array.data[1].m_Flags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveGamepad.m_SingletonActionBindings.Array.data[2].m_Flags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveGamepad.m_SingletonActionBindings.Array.data[3].m_Flags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveGamepad.m_SingletonActionBindings.Array.data[4].m_Flags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveKeyborad.m_SingletonActionBindings.Array.data[0].m_Name
+      value: 2D Vector
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveKeyborad.m_SingletonActionBindings.Array.data[0].m_Path
+      value: 2DVector
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveKeyborad.m_SingletonActionBindings.Array.data[1].m_Name
+      value: up
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveKeyborad.m_SingletonActionBindings.Array.data[1].m_Path
+      value: <Keyboard>/w
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveKeyborad.m_SingletonActionBindings.Array.data[2].m_Name
+      value: down
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveKeyborad.m_SingletonActionBindings.Array.data[2].m_Path
+      value: <Keyboard>/s
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveKeyborad.m_SingletonActionBindings.Array.data[3].m_Name
+      value: left
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveKeyborad.m_SingletonActionBindings.Array.data[3].m_Path
+      value: <Keyboard>/a
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveKeyborad.m_SingletonActionBindings.Array.data[4].m_Name
+      value: right
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveKeyborad.m_SingletonActionBindings.Array.data[4].m_Path
+      value: <Keyboard>/d
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: sprintAction.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Keyboard>/leftShift
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: sprintAction.m_SingletonActionBindings.Array.data[1].m_Path
+      value: <Gamepad>/rightTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: sprintKeyborad.m_SingletonActionBindings.Array.data[0].m_Id
+      value: e7cb35af-cc26-4b75-aaa5-341fedfbe2c9
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: zoomAction.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Zoom
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: zoomAction.m_SingletonActionBindings.Array.data[1].m_Action
+      value: Zoom
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: zoomKeyborad.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Mouse>/rightButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimKeyborad.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Aim Keyborad
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimKeyborad.m_SingletonActionBindings.Array.data[1].m_Action
+      value: Aim Keyborad
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimKeyborad.m_SingletonActionBindings.Array.data[2].m_Action
+      value: Aim Keyborad
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimKeyborad.m_SingletonActionBindings.Array.data[3].m_Action
+      value: Aim Keyborad
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: aimKeyborad.m_SingletonActionBindings.Array.data[4].m_Action
+      value: Aim Keyborad
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: crouchGamepad.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Gamepad>/leftTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: interactGamepad.m_SingletonActionBindings.Array.data[0].m_Id
+      value: d52c9807-e8b4-4650-b935-7ef5467f2675
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: jumpGamepad.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Jump Gamepad
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveGamepad.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Move Gamepad
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveGamepad.m_SingletonActionBindings.Array.data[1].m_Action
+      value: Move Gamepad
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveGamepad.m_SingletonActionBindings.Array.data[2].m_Action
+      value: Move Gamepad
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveGamepad.m_SingletonActionBindings.Array.data[3].m_Action
+      value: Move Gamepad
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveGamepad.m_SingletonActionBindings.Array.data[4].m_Action
+      value: Move Gamepad
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveKeyborad.m_SingletonActionBindings.Array.data[0].m_Flags
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveKeyborad.m_SingletonActionBindings.Array.data[1].m_Flags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveKeyborad.m_SingletonActionBindings.Array.data[2].m_Flags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveKeyborad.m_SingletonActionBindings.Array.data[3].m_Flags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveKeyborad.m_SingletonActionBindings.Array.data[4].m_Flags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: sprintGamepad.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Gamepad>/rightTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: zoomGamepad.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Zoom Gamepad
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: crouchAction.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Crouch
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: crouchAction.m_SingletonActionBindings.Array.data[1].m_Action
+      value: Crouch
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: crouchKeyborad.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Keyboard>/leftCtrl
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: interactAction.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Keyboard>/e
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: interactAction.m_SingletonActionBindings.Array.data[1].m_Path
+      value: <Gamepad>/buttonWest
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: interactKeyborad.m_SingletonActionBindings.Array.data[0].m_Id
+      value: fca4202f-b42c-4564-9f54-eb74b7ac0239
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: jumpKeyborad.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Jump Keyborad
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveKeyborad.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Move Keyborad
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveKeyborad.m_SingletonActionBindings.Array.data[1].m_Action
+      value: Move Keyborad
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveKeyborad.m_SingletonActionBindings.Array.data[2].m_Action
+      value: Move Keyborad
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveKeyborad.m_SingletonActionBindings.Array.data[3].m_Action
+      value: Move Keyborad
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: moveKeyborad.m_SingletonActionBindings.Array.data[4].m_Action
+      value: Move Keyborad
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: sprintAction.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Sprint
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: sprintAction.m_SingletonActionBindings.Array.data[1].m_Action
+      value: Sprint
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: sprintKeyborad.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Keyboard>/leftShift
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: zoomKeyborad.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Zoom Keyborad
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: crouchGamepad.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Crouch Gamepad
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: interactGamepad.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Gamepad>/buttonWest
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: sprintGamepad.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Sprint Gamepad
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: crouchKeyborad.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Crouch Keyborad
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: interactAction.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Interact
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: interactAction.m_SingletonActionBindings.Array.data[1].m_Action
+      value: Interact
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: interactKeyborad.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Keyboard>/e
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: sprintKeyborad.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Sprint Keyborad
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: interactGamepad.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Interact Gamepad
+      objectReference: {fileID: 0}
+    - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: interactKeyborad.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Interact Keyborad
       objectReference: {fileID: 0}
     - target: {fileID: 672099872298955455, guid: be5c62aa157692941837637cb82e0657, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1155,6 +2167,10 @@ PrefabInstance:
     - target: {fileID: 672099872298955455, guid: be5c62aa157692941837637cb82e0657, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3626403098506948769, guid: be5c62aa157692941837637cb82e0657, type: 3}
+      propertyPath: m_SlopeLimit
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 5729715445701916266, guid: be5c62aa157692941837637cb82e0657, type: 3}
       propertyPath: m_Name
