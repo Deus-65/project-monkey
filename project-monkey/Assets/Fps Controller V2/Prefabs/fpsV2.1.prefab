@@ -261,7 +261,7 @@ MonoBehaviour:
   interactionDistance: 2
   interactionLayer:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 0
   moveAction:
     m_Name: Move
     m_Type: 0
@@ -2696,7 +2696,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
       propertyPath: interactionLayer.m_Bits
-      value: 512
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 405152820331158865, guid: be5c62aa157692941837637cb82e0657, type: 3}
       propertyPath: jumpAction.m_ExpectedControlType
