@@ -3,12 +3,15 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Footsteps/GRASS
+  - Footsteps/WOOD
+  - Footsteps/METAL
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - locky
   - Water
   - UI
   - 

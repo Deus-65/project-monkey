@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -18,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     public float playerHeight;
     public LayerMask whatIsGround;
     bool grounded;
-   
+
     // Zıplama 
     [Header("Jumping")]
     public float jumpForce;
@@ -45,10 +46,10 @@ public class PlayerMovement : MonoBehaviour
     // koşu için Yeni Input Action
     private InputAction sprintAction;
     [SerializeField] private InputAction sprintActionGamepad;
-   
+
     // Zıplama için Yeni Input Action
     private InputAction jumpAction;
-    [SerializeField]private InputAction jumpActionGamepad;
+    [SerializeField] private InputAction jumpActionGamepad;
 
     // Hareket Input Action'ları
     private InputAction moveAction;
@@ -82,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
             .With("Down", "<Keyboard>/s")
             .With("Left", "<Keyboard>/a")
             .With("Right", "<Keyboard>/d");
-          
+
         if (jumpAction == null || jumpAction.bindings.Count == 0)
         {
             jumpAction = new InputAction("Jump", binding: "<Keyboard>/space");
@@ -115,7 +116,7 @@ public class PlayerMovement : MonoBehaviour
 
         moveAction.performed += OnMovementInput;
         moveAction.canceled += OnMovementInput;
-               
+
         // Zıplama tuşuna basıldığını dinliyoruz
         jumpAction.performed += ctx => isJumpingInput = true;
         jumpAction.canceled += ctx => isJumpingInput = false;
@@ -137,13 +138,13 @@ public class PlayerMovement : MonoBehaviour
             jumpActionGamepad.performed += ctx => isJumpingInput = true;
             jumpActionGamepad.canceled += ctx => isJumpingInput = false;
         }
-        
+
         if (sprintActionGamepad != null)
         {
             sprintActionGamepad.performed += ctx => isSprintingInput = true;
             sprintActionGamepad.canceled += ctx => isSprintingInput = false;
         }
-        
+
         if (crouchActionGamepad != null)
         {
             crouchActionGamepad.performed += OnCrouchPerformed;
@@ -169,7 +170,7 @@ public class PlayerMovement : MonoBehaviour
         if (moveActinGamepad != null)
         {
             moveActinGamepad.performed -= OnMovementInput;
-            moveActinGamepad.canceled -= OnMovementInput;           
+            moveActinGamepad.canceled -= OnMovementInput;
         }
 
         if (jumpActionGamepad != null)
@@ -183,7 +184,7 @@ public class PlayerMovement : MonoBehaviour
             sprintActionGamepad.performed -= ctx => isSprintingInput = true;
             sprintActionGamepad.canceled -= ctx => isSprintingInput = false;
         }
-        
+
         if (crouchActionGamepad != null)
         {
             crouchActionGamepad.performed -= OnCrouchPerformed;
@@ -218,7 +219,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // Ground Check
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
-        
+
         StateHandler();
 
         // Handle drag
@@ -235,25 +236,25 @@ public class PlayerMovement : MonoBehaviour
             Invoke(nameof(ResetJump), jumpCooldown); // Yazım hatası düzeltildi: reserJump -> ResetJump
         }
 
-        
+
         if (iscrouchingInput && grounded)
-        { 
-           transform.localScale = new Vector3(transform.localScale.x,crouchYscale,transform.localScale.z);
-           
+        {
+            transform.localScale = new Vector3(transform.localScale.x, crouchYscale, transform.localScale.z);
+
         }
         else
         {
-           transform.localScale = new Vector3(transform.localScale.x, startYscale, transform.localScale.z);
+            transform.localScale = new Vector3(transform.localScale.x, startYscale, transform.localScale.z);
         }
-        
+
 
     }
 
     private void FixedUpdate()
     {
         MovePlayer();
-        SpeedControl(); 
-       
+        SpeedControl();
+
     }
 
     private void OnMovementInput(InputAction.CallbackContext context)
@@ -262,7 +263,7 @@ public class PlayerMovement : MonoBehaviour
         horizontalInput = inputVector.x;
         verticalInput = inputVector.y;
     }
- 
+
     private void StateHandler()
     {
         // Sprinting mode
@@ -295,8 +296,8 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForce(GetSlopeMoveDricetion() * moveSpeed * 20f, ForceMode.Force);
 
-            if(rb.linearVelocity.y > 0) 
-                rb.AddForce(Vector3.down * 80f, ForceMode.Force);    
+            if (rb.linearVelocity.y > 0)
+                rb.AddForce(Vector3.down * 80f, ForceMode.Force);
         }
 
         // Yerdeyken
@@ -305,7 +306,7 @@ public class PlayerMovement : MonoBehaviour
         // Havadayken
         else if (!grounded)
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
-        
+
         // eğimde yer çekimini kapat
         rb.useGravity = !OnSlope();
     }
@@ -315,7 +316,7 @@ public class PlayerMovement : MonoBehaviour
         // eğimde hız limiti 
         if (OnSlope() && exitingSlope)
         {
-            if (rb.linearVelocity.magnitude > moveSpeed) 
+            if (rb.linearVelocity.magnitude > moveSpeed)
                 rb.linearVelocity = rb.linearVelocity.normalized * moveSpeed;
         }
 
@@ -331,7 +332,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        
+
     }
 
     private void Jump()
@@ -339,16 +340,16 @@ public class PlayerMovement : MonoBehaviour
         // HATA DÜZELTİLDİ: Y hızını sıfırlıyoruz, X ve Z'yi koruyoruz
         rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
 
-        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse); 
-        
+        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+
         exitingSlope = true;
 
     }
 
     private void ResetJump()
-    {    
+    {
         readyToJump = true;
-     
+
         exitingSlope = false;
     }
 
@@ -371,10 +372,10 @@ public class PlayerMovement : MonoBehaviour
 
     private bool OnSlope()
     {
-        if(Physics.Raycast(transform.position, Vector3.down, out slopeHit , playerHeight * 0.5f + 0.3f))
+        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f))
         {
             float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
-            return angle < maxSlopeAngle && angle != 0; 
+            return angle < maxSlopeAngle && angle != 0;
         }
         return false;
     }
