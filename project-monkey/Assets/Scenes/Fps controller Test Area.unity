@@ -1311,7 +1311,7 @@ GameObject:
   - component: {fileID: 533134140}
   - component: {fileID: 533134139}
   - component: {fileID: 533134138}
-  m_Layer: 9
+  m_Layer: 6
   m_Name: Cube (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4451,7 +4451,7 @@ GameObject:
   - component: {fileID: 1312006365}
   - component: {fileID: 1312006364}
   - component: {fileID: 1312006363}
-  m_Layer: 9
+  m_Layer: 6
   m_Name: Cube (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6712,6 +6712,14 @@ PrefabInstance:
     - target: {fileID: 1029852961875626886, guid: d2b3b57cb1418234e9205373537d6625, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587556313100718858, guid: d2b3b57cb1418234e9205373537d6625, type: 3}
+      propertyPath: interactionDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587556313100718858, guid: d2b3b57cb1418234e9205373537d6625, type: 3}
+      propertyPath: interactionLayer.m_Bits
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 4856341395768796403, guid: d2b3b57cb1418234e9205373537d6625, type: 3}
       propertyPath: m_Name
