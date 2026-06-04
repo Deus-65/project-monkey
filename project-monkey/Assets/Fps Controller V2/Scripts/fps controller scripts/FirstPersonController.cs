@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.ProBuilder.MeshOperations;
 
 public class FirstPersonController : MonoBehaviour
 {
@@ -56,8 +57,11 @@ public class FirstPersonController : MonoBehaviour
     public static Action<float> OnStaminaChance;
 
     [Header("Jumping Parameters")]
-    [SerializeField] private float jumpForce = 8.0f;
-    [SerializeField] private float gravity = 30.0F;
+    [SerializeField] private float maxJumpHeight = 1.5f;
+    [SerializeField] private float gravity = 12.0F;
+    [SerializeField] private float fallMultiplier = 1.5F;
+    [SerializeField] private float lowJumpMultiplier = 2.0F;
+    private bool isJumpPressed;
 
     [Header("Jump Tolerances (coyote and buffer")]
     [SerializeField] private float coyoteTime = 0.15f;
@@ -200,7 +204,7 @@ public class FirstPersonController : MonoBehaviour
         lookAction.performed += ctx => mouseInput = ctx.ReadValue<Vector2>();
         lookAction.canceled += ctx => mouseInput = Vector2.zero;
 
-        jumpAction.performed += ctx => HandelJump();
+        jumpAction.started += ctx => {isJumpPressed = true; HandelJump();};
 
         crouchAction.performed += ctx => HandleCrouch();
 
@@ -223,7 +227,7 @@ public class FirstPersonController : MonoBehaviour
         lookAction.performed -= ctx => mouseInput = ctx.ReadValue<Vector2>();
         lookAction.canceled -= ctx => mouseInput = Vector2.zero;
 
-        jumpAction.performed -= ctx => HandelJump();
+        jumpAction.canceled += ctx => OnJumpReleased(); 
 
         crouchAction.performed -= ctx => HandleCrouch();
 
@@ -348,10 +352,20 @@ public class FirstPersonController : MonoBehaviour
     {
         if (jumpBufferTimeCounter > 0f && coyoteTimeCounter > 0f) 
         {
-            moveDirection.y = jumpForce;
+            moveDirection.y = Mathf.Sqrt(2f * gravity * maxJumpHeight);
 
             jumpBufferTimeCounter = 0f;
             coyoteTimeCounter = 0f;
+        }
+    }
+
+    private void OnJumpReleased()
+    {
+        isJumpPressed = false;
+
+        if (moveDirection.y > 0)
+        {
+            moveDirection.y *= 0.5f;
         }
     }
 
@@ -503,13 +517,32 @@ public class FirstPersonController : MonoBehaviour
     private void ApplyFinalMovements()
     {
         if (!characterController.isGrounded)
-            moveDirection.y -= gravity * Time.deltaTime;
+        {
+            if (moveDirection.y < 0)
+            {
+                moveDirection.y -= gravity * fallMultiplier * Time.deltaTime;
+            }
+            
+            else if (moveDirection.y > 0 && !isJumpPressed)
+            {
+                moveDirection.y -= gravity * lowJumpMultiplier * Time.deltaTime;
+            }
+            
+            else
+            {
+                moveDirection.y -= gravity * Time.deltaTime;
+            }
+        }
+        else if (moveDirection.y < 0)
+        {
+            moveDirection.y = -2f;
+        }
 
         if (WillSlideOnSlopes && IsSliding)
-            moveDirection += new Vector3(hitPointNormal.x, -hitPointNormal.y, hitPointNormal.z) * slopeSpeed ;
-
+            moveDirection += new Vector3(hitPointNormal.x, -hitPointNormal.y, hitPointNormal.z) * slopeSpeed;
 
         characterController.Move(moveDirection * Time.deltaTime);
+
     }
 
     private IEnumerator CrouchStand()

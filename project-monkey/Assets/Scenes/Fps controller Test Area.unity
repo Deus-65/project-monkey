@@ -12468,8 +12468,10 @@ MonoBehaviour:
   timeBeforeStaminaRegenStarts: 5
   staminaValueIncrement: 2
   staminaTimeIncrement: 0.1
-  jumpForce: 4
+  maxJumpHeight: 1.2
   gravity: 12
+  fallMultiplier: 1.5
+  lowJumpMultiplier: 2
   coyoteTime: 0.15
   jumpBufferTime: 0.15
   crouchHeight: 0.25
