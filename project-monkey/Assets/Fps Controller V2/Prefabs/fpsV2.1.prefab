@@ -164,7 +164,7 @@ Transform:
   m_GameObject: {fileID: 1257321497264549020}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1116.0994, y: -492.6569, z: 0}
+  m_LocalPosition: {x: 0, y: -492.6569, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -236,6 +236,8 @@ MonoBehaviour:
   staminaTimeIncrement: 0.1
   jumpForce: 8
   gravity: 30
+  coyoteTime: 0.15
+  jumpBufferTime: 0.15
   crouchHeight: 0.5
   standingHeight: 2
   timeToCrouch: 0.25
@@ -1256,7 +1258,7 @@ Transform:
   m_GameObject: {fileID: 4856341395768796403}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1116.0994, y: 493.6569, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3596,7 +3598,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 672099872298955455, guid: be5c62aa157692941837637cb82e0657, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1116.0994
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 672099872298955455, guid: be5c62aa157692941837637cb82e0657, type: 3}
       propertyPath: m_LocalPosition.y

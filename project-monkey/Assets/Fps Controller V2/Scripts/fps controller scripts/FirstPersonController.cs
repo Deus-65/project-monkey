@@ -26,6 +26,7 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] private float sprintSpeed = 6.0f;
     [SerializeField] private float crouchingSpeed = 1.5f;
     [SerializeField] private float slopeSpeed = 8f;
+    private float moveSpeed;
 
     [Header("Look Prameters")]
     [SerializeField, Range(1, 10)] private float lookSpeedX = 2.0f;
@@ -58,7 +59,14 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] private float jumpForce = 8.0f;
     [SerializeField] private float gravity = 30.0F;
 
-    [Header("Jump Parameters")]
+    [Header("Jump Tolerances (coyote and buffer")]
+    [SerializeField] private float coyoteTime = 0.15f;
+    private float coyoteTimeCounter;
+
+    [SerializeField] private float jumpBufferTime = 0.15f;
+    private float jumpBufferTimeCounter;
+
+    [Header("Crouch Parameters")]
     [SerializeField] private float crouchHeight = 0.5f;
     [SerializeField] private float standingHeight = 2f;
     [SerializeField] private float timeToCrouch = 0.25f;
@@ -82,6 +90,8 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] private float crouchBobSpeed = 8f;
     [SerializeField] private float crouchBobAmount = 0.025f;
     private float defaultYPos = 0;
+    private float crouchYPos = 0;
+    private float currentYPos = 0;
     private float timer;
 
     [Header("Zoom Parameters")]
@@ -163,6 +173,8 @@ public class FirstPersonController : MonoBehaviour
         playerCamera = GetComponentInChildren<Camera>();
         characterController = GetComponent<CharacterController>();
         defaultYPos = playerCamera.transform.localPosition.y;
+        crouchYPos = defaultYPos* (crouchHeight / standingHeight);
+        currentYPos = defaultYPos;
         defaultFOV = playerCamera.fieldOfView;
         currentHealth = maxHelath;
         currentStamina = maxStamina;
@@ -236,20 +248,25 @@ public class FirstPersonController : MonoBehaviour
     {
         if (CanMove)
         {
+            StateHandler();
+            UpdateTimers();
             HandleMovementInput();
             HandleMouseLook();
 
-            if (canUseHeadBob)
-                HandleHeadBob();
+            ExecuteJump();
 
-            if (useFootsteps)
-                Handle_Footsteps();
-
-            if (canInteract)
+            if(state == MovementState.walking || state == MovementState.crouching || state == MovementState.sprinting)
             {
-                HandleInteractionCheck();
-            }
+                if (canUseHeadBob)
+                    HandleHeadBob();
 
+                if (useFootsteps)
+                    Handle_Footsteps();
+            }
+            
+            if (canInteract)
+                HandleInteractionCheck();
+            
             if (useStamina)
                 HandleStamina();
                 
@@ -257,11 +274,49 @@ public class FirstPersonController : MonoBehaviour
         }
     }
 
+    private void StateHandler()
+    {
+        if (characterController.isGrounded)
+        {
+            if (isCrouching)
+            {
+                state = MovementState.crouching;
+                moveSpeed = crouchingSpeed;
+            }
+            else if (IsSprinting)
+            {
+                state = MovementState.sprinting;
+                moveSpeed = sprintSpeed;
+            }
+            else
+            {
+                state = MovementState.walking;
+                moveSpeed = walkSpeed;
+            }
+        }
+        else
+        {
+            state = MovementState.air;
+        }
+    }
+
+    private void UpdateTimers()
+    {
+        if (characterController.isGrounded) 
+        {
+            coyoteTimeCounter = coyoteTime;
+        }
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime;
+        }
+
+        jumpBufferTimeCounter -= Time.deltaTime;
+    }
+
     private void HandleMovementInput()
     {
-        float currentSpeed = isCrouching ? crouchingSpeed : IsSprinting ? sprintSpeed : walkSpeed;
-
-        currenInput = new Vector2(currentSpeed * rawInput.y, currentSpeed * rawInput.x);
+        currenInput = new Vector2(moveSpeed * rawInput.y, moveSpeed * rawInput.x);
 
         float moveDirectionY = moveDirection.y;
 
@@ -282,8 +337,22 @@ public class FirstPersonController : MonoBehaviour
 
     private void HandelJump() 
     {
-        if (canJump && characterController.isGrounded)
+        if (canJump)
+        {
+            jumpBufferTimeCounter = jumpBufferTime;
+        }
+           
+    }
+
+    private void ExecuteJump()
+    {
+        if (jumpBufferTimeCounter > 0f && coyoteTimeCounter > 0f) 
+        {
             moveDirection.y = jumpForce;
+
+            jumpBufferTimeCounter = 0f;
+            coyoteTimeCounter = 0f;
+        }
     }
 
     private void HandleCrouch()
@@ -301,7 +370,7 @@ public class FirstPersonController : MonoBehaviour
             timer += Time.deltaTime * (isCrouching ? crouchBobSpeed : IsSprinting ? sprintBobSpeed : walkBobSpeed);
             playerCamera.transform.localPosition = new Vector3(
                 playerCamera.transform.localPosition.x,
-                defaultYPos + Mathf.Sin(timer) * (isCrouching ? crouchBobAmount: IsSprinting ? sprintBobAmount: walkBobAmount),
+                currentYPos + Mathf.Sin(timer) * (isCrouching ? crouchBobAmount: IsSprinting ? sprintBobAmount: walkBobAmount),
                 playerCamera.transform.localPosition.z);
         }
 
@@ -309,7 +378,7 @@ public class FirstPersonController : MonoBehaviour
 
     private void HandleStamina()
     {
-        if(IsSprinting && rawInput.magnitude > 0.1f)
+        if(state == MovementState.sprinting && rawInput.magnitude > 0.1f)
         {
             if (regeneratingStamina != null)
             {
@@ -454,11 +523,15 @@ public class FirstPersonController : MonoBehaviour
         float currentHeight = characterController.height;
         Vector3 targetCenter = isCrouching ? standingCenter : crouchingCenter;
         Vector3 currentCenter = characterController.center;
+        float targetCamHeight = isCrouching ? defaultYPos : crouchYPos;
+        float startCamHeight = currentYPos;
 
         while (timeElapsed < timeToCrouch)
         {
             characterController.height = Mathf.Lerp(currentHeight, targetHeight, timeElapsed / timeToCrouch);
             characterController.center = Vector3.Lerp(currentCenter, targetCenter, timeElapsed / timeToCrouch);
+            currentYPos = Mathf.Lerp(startCamHeight, targetCamHeight, timeElapsed / timeToCrouch);
+            playerCamera.transform.localPosition = new Vector3(playerCamera.transform.localPosition.x,currentYPos,playerCamera.transform.localPosition.z);
             timeElapsed += Time.deltaTime;
             yield return null;
         }
