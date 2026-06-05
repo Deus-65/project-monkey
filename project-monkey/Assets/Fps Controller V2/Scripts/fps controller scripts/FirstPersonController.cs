@@ -342,7 +342,7 @@ public class FirstPersonController : MonoBehaviour
     {
         Vector2 targetInput = new Vector2(moveSpeed * rawInput.y, moveSpeed* rawInput.x);
 
-        float acceleration = CharacterController.isGrounded ? groundAcceleration : airAcceleration;
+        float acceleration = characterController.isGrounded ? groundAcceleration : airAcceleration;
 
         currenInput = Vector2.Lerp(currenInput, targetInput, acceleration * Time.deltaTime);
 
