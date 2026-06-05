@@ -12707,6 +12707,9 @@ MonoBehaviour:
       m_Action: Interact
       m_Flags: 0
     m_Flags: 0
+  diveSpeed: 15
+  diveDuration: 0.25
+  diveStaminaCost: 25
 --- !u!114 &78721712677692054
 MonoBehaviour:
   m_ObjectHideFlags: 0

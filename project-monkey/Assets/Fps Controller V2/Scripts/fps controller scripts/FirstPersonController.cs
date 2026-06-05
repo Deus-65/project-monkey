@@ -172,6 +172,15 @@ public class FirstPersonController : MonoBehaviour
     private Vector2 rawInput;
     private Vector2 mouseInput;
 
+
+    [Header("Dive Parameters")]
+    [SerializeField] private float diveSpeed = 15f;
+    [SerializeField] private float diveDuration = 0.25f;
+    [SerializeField] private float diveStaminaCost = 25f;
+
+    private bool hasDived;
+    private bool isDiving;
+
     private void Awake()
     {
         playerCamera = GetComponentInChildren<Camera>();
@@ -210,8 +219,8 @@ public class FirstPersonController : MonoBehaviour
 
         interactAction.performed += ctx => HandleInteactionInput();
 
-        sprintAction.started += ctx => isSprintingInput = true;
-        sprintAction.canceled += ctx => isSprintingInput = false;
+        sprintAction.performed += OnSprintAction;
+        sprintAction.canceled += OnSprintAction;
 
         zoomAction.started += ctx => ToggleZoomState(true);
         zoomAction.canceled += ctx => ToggleZoomState(false);
@@ -233,8 +242,8 @@ public class FirstPersonController : MonoBehaviour
 
         interactAction.performed -= ctx => HandleInteactionInput();
 
-        sprintAction.started -= ctx => isSprintingInput = true;
-        sprintAction.canceled -= ctx => isSprintingInput = false;
+        sprintAction.performed -= OnSprintAction;
+        sprintAction.canceled -= OnSprintAction;
 
         zoomAction.started -= ctx => ToggleZoomState(true);
         zoomAction.canceled -= ctx => ToggleZoomState(false);
@@ -254,8 +263,12 @@ public class FirstPersonController : MonoBehaviour
         {
             StateHandler();
             UpdateTimers();
-            HandleMovementInput();
             HandleMouseLook();
+
+            if (!isDiving)
+            {
+                HandleMovementInput();
+            }
 
             ExecuteJump();
 
@@ -309,6 +322,7 @@ public class FirstPersonController : MonoBehaviour
         if (characterController.isGrounded) 
         {
             coyoteTimeCounter = coyoteTime;
+            hasDived = false;
         }
         else
         {
@@ -368,6 +382,27 @@ public class FirstPersonController : MonoBehaviour
             moveDirection.y *= 0.5f;
         }
     }
+
+    private void OnSprintAction(InputAction.CallbackContext ctx)
+    {
+        
+        if (ctx.performed)
+        {
+            isSprintingInput = true; 
+
+           
+            if (state == MovementState.air && !hasDived && currentStamina >= diveStaminaCost)
+            {
+                StartCoroutine(PerformDive());
+            }
+        }
+        
+        else if (ctx.canceled)
+        {
+            isSprintingInput = false; 
+        }
+    }
+
 
     private void HandleCrouch()
     {
@@ -516,7 +551,7 @@ public class FirstPersonController : MonoBehaviour
 
     private void ApplyFinalMovements()
     {
-        if (!characterController.isGrounded)
+        if (!characterController.isGrounded && !isDiving)
         {
             if (moveDirection.y < 0)
             {
@@ -633,5 +668,30 @@ public class FirstPersonController : MonoBehaviour
         }
 
         regeneratingStamina = null;
+    }
+
+    private IEnumerator PerformDive()
+    {
+        isDiving = true;
+        hasDived = true;
+        currentStamina -= diveStaminaCost;
+        OnStaminaChance?.Invoke(currentStamina);
+
+        Vector3 diveDirection = (transform.forward *currenInput.x + transform.right * currenInput.y).normalized;
+
+        if (diveDirection == Vector3.zero)
+            diveDirection = transform.forward;
+
+        float startTime = Time.time;
+
+        while (Time.time < startTime + diveDuration)
+        {
+            moveDirection = diveDirection * diveSpeed;
+            moveDirection.y = 0;
+
+            yield return null;
+        }
+
+        isDiving = false;
     }
 }
