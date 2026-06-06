@@ -2,13 +2,14 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.ProBuilder.MeshOperations;
 
 public class FirstPersonController : MonoBehaviour
 {
     public bool CanMove { get; private set; } = true;
 
     private bool isSprintingInput;
-    private bool IsSprinting => canSprint && isSprintingInput && currentStamina > 0;
+    private bool IsSprinting => canSprint && isSprintingInput && (!useStamina || currentStamina > 0);
 
     [Header("Functional Optionas")]
     [SerializeField] private bool canSprint = true;
@@ -20,12 +21,18 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] private bool canInteract = true;
     [SerializeField] private bool useFootsteps = true;
     [SerializeField] private bool useStamina = true;
+    [SerializeField] private bool canDive = true;
+    [SerializeField] private bool canClimb = true;
 
     [Header("Movement Parameters")]
     [SerializeField] private float walkSpeed = 3.0f;
     [SerializeField] private float sprintSpeed = 6.0f;
     [SerializeField] private float crouchingSpeed = 1.5f;
     [SerializeField] private float slopeSpeed = 8f;
+    private float moveSpeed;
+    [SerializeField] private float groundAcceleration = 10f;
+    [SerializeField] private float airAcceleration = 3f;
+    private Vector3 currentLedgeNormal;
 
     [Header("Look Prameters")]
     [SerializeField, Range(1, 10)] private float lookSpeedX = 2.0f;
@@ -55,10 +62,20 @@ public class FirstPersonController : MonoBehaviour
     public static Action<float> OnStaminaChance;
 
     [Header("Jumping Parameters")]
-    [SerializeField] private float jumpForce = 8.0f;
-    [SerializeField] private float gravity = 30.0F;
+    [SerializeField] private float maxJumpHeight = 1.5f;
+    [SerializeField] private float gravity = 12.0F;
+    [SerializeField] private float fallMultiplier = 1.5F;
+    [SerializeField] private float lowJumpMultiplier = 2.0F;
+    private bool isJumpPressed;
 
-    [Header("Jump Parameters")]
+    [Header("Jump Tolerances (coyote and buffer")]
+    [SerializeField] private float coyoteTime = 0.15f;
+    private float coyoteTimeCounter;
+
+    [SerializeField] private float jumpBufferTime = 0.15f;
+    private float jumpBufferTimeCounter;
+
+    [Header("Crouch Parameters")]
     [SerializeField] private float crouchHeight = 0.5f;
     [SerializeField] private float standingHeight = 2f;
     [SerializeField] private float timeToCrouch = 0.25f;
@@ -66,13 +83,7 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] private Vector3 standingCenter = new Vector3(0, 0, 0);
     private bool isCrouching;
     private bool duringCrouchAnimation;
-    // Crouch height
-    // Stand height
-    // Is crouching
-    // Is in crouching animation
-    // Time to crouch/stand
-    // standing center point
-    // crouching center point
+
 
     [Header("Headbob Prameterers")]
     [SerializeField] private float walkBobSpeed = 14f;
@@ -82,6 +93,8 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] private float crouchBobSpeed = 8f;
     [SerializeField] private float crouchBobAmount = 0.025f;
     private float defaultYPos = 0;
+    private float crouchYPos = 0;
+    private float currentYPos = 0;
     private float timer;
 
     [Header("Zoom Parameters")]
@@ -105,15 +118,7 @@ public class FirstPersonController : MonoBehaviour
     private Vector3 hitPointNormal;
 
     public MovementState state;
-    public enum MovementState
-    {
-        walking,
-        sprinting,
-        air,
-        crouching,
-        dive,
-        tail
-    }
+    public enum MovementState{ walking, sprinting, air, crouching, dive, hanging, climbing, tail}
 
     private bool IsSliding
     {
@@ -146,6 +151,25 @@ public class FirstPersonController : MonoBehaviour
 
     private float rotationX = 0;
 
+    [Header("Dive Parameters")]
+    [SerializeField] private float diveSpeed = 15f;
+    [SerializeField] private float diveDuration = 0.25f;
+    [SerializeField] private float diveStaminaCost = 25f;
+
+    private bool hasDived;
+    private bool isDiving;
+
+    [Header("Edge Climb Parameters")]
+    [SerializeField] private float climbRayLength = 0.6f;
+    [SerializeField] private float climbRayHeight = 0.4f;
+    [SerializeField] private float climbDownRayHeight = 0.6f;
+    [SerializeField] private LayerMask climbableLayer;
+    [SerializeField] private float climbSpeed = 5f;
+
+    private Vector3 currentLedgePoint;
+
+    private bool isClimbing;
+
 
     [Header("Input Actions ")]
     [SerializeField] private InputAction moveAction;
@@ -163,6 +187,8 @@ public class FirstPersonController : MonoBehaviour
         playerCamera = GetComponentInChildren<Camera>();
         characterController = GetComponent<CharacterController>();
         defaultYPos = playerCamera.transform.localPosition.y;
+        crouchYPos = defaultYPos* (crouchHeight / standingHeight);
+        currentYPos = defaultYPos;
         defaultFOV = playerCamera.fieldOfView;
         currentHealth = maxHelath;
         currentStamina = maxStamina;
@@ -188,14 +214,15 @@ public class FirstPersonController : MonoBehaviour
         lookAction.performed += ctx => mouseInput = ctx.ReadValue<Vector2>();
         lookAction.canceled += ctx => mouseInput = Vector2.zero;
 
-        jumpAction.performed += ctx => HandelJump();
+        jumpAction.started += ctx => HandelJump();
+        jumpAction.canceled += ctx => OnJumpReleased();
 
         crouchAction.performed += ctx => HandleCrouch();
 
         interactAction.performed += ctx => HandleInteactionInput();
 
-        sprintAction.started += ctx => isSprintingInput = true;
-        sprintAction.canceled += ctx => isSprintingInput = false;
+        sprintAction.performed += OnSprintAction;
+        sprintAction.canceled += OnSprintAction;
 
         zoomAction.started += ctx => ToggleZoomState(true);
         zoomAction.canceled += ctx => ToggleZoomState(false);
@@ -211,14 +238,15 @@ public class FirstPersonController : MonoBehaviour
         lookAction.performed -= ctx => mouseInput = ctx.ReadValue<Vector2>();
         lookAction.canceled -= ctx => mouseInput = Vector2.zero;
 
-        jumpAction.performed -= ctx => HandelJump();
+        jumpAction.started -= ctx => HandelJump();
+        jumpAction.canceled -= ctx => OnJumpReleased();
 
         crouchAction.performed -= ctx => HandleCrouch();
 
         interactAction.performed -= ctx => HandleInteactionInput();
 
-        sprintAction.started -= ctx => isSprintingInput = true;
-        sprintAction.canceled -= ctx => isSprintingInput = false;
+        sprintAction.performed -= OnSprintAction;
+        sprintAction.canceled -= OnSprintAction;
 
         zoomAction.started -= ctx => ToggleZoomState(true);
         zoomAction.canceled -= ctx => ToggleZoomState(false);
@@ -236,20 +264,32 @@ public class FirstPersonController : MonoBehaviour
     {
         if (CanMove)
         {
-            HandleMovementInput();
+            StateHandler();
+            UpdateTimers();
             HandleMouseLook();
 
-            if (canUseHeadBob)
-                HandleHeadBob();
-
-            if (useFootsteps)
-                Handle_Footsteps();
-
-            if (canInteract)
+            if (!isDiving)
             {
-                HandleInteractionCheck();
+                HandleMovementInput();
             }
 
+            ExecuteJump();
+
+            HandleLedgeDetection();
+            HandleHanging();
+
+            if(state == MovementState.walking || state == MovementState.crouching || state == MovementState.sprinting)
+            {
+                if (canUseHeadBob)
+                    HandleHeadBob();
+
+                if (useFootsteps)
+                    Handle_Footsteps();
+            }
+            
+            if (canInteract)
+                HandleInteractionCheck();
+            
             if (useStamina)
                 HandleStamina();
                 
@@ -257,16 +297,58 @@ public class FirstPersonController : MonoBehaviour
         }
     }
 
+    private void StateHandler()
+    {
+        if (characterController.isGrounded)
+        {
+            if (isCrouching)
+            {
+                state = MovementState.crouching;
+                moveSpeed = crouchingSpeed;
+            }
+            else if (IsSprinting)
+            {
+                state = MovementState.sprinting;
+                moveSpeed = sprintSpeed;
+            }
+            else
+            {
+                state = MovementState.walking;
+                moveSpeed = walkSpeed;
+            }
+        }
+        else
+        {
+            state = MovementState.air;
+        }
+    }
+
+    private void UpdateTimers()
+    {
+        if (characterController.isGrounded) 
+        {
+            coyoteTimeCounter = coyoteTime;
+            hasDived = false;
+        }
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime;
+        }
+
+        jumpBufferTimeCounter -= Time.deltaTime;
+    }
+
     private void HandleMovementInput()
     {
-        float currentSpeed = isCrouching ? crouchingSpeed : IsSprinting ? sprintSpeed : walkSpeed;
+        Vector2 targetInput = new Vector2(moveSpeed * rawInput.y, moveSpeed* rawInput.x);
 
-        currenInput = new Vector2(currentSpeed * rawInput.y, currentSpeed * rawInput.x);
+        float acceleration = characterController.isGrounded ? groundAcceleration : airAcceleration;
+
+        currenInput = Vector2.Lerp(currenInput, targetInput, acceleration * Time.deltaTime);
 
         float moveDirectionY = moveDirection.y;
 
-        moveDirection = (transform.TransformDirection(Vector3.forward) * currenInput.x) +
-                        (transform.TransformDirection(Vector3.right) * currenInput.y);
+        moveDirection = (transform.TransformDirection(Vector3.forward) * currenInput.x) + (transform.TransformDirection(Vector3.right) * currenInput.y);
 
         moveDirection.y = moveDirectionY;
     }
@@ -282,14 +364,62 @@ public class FirstPersonController : MonoBehaviour
 
     private void HandelJump() 
     {
-        if (canJump && characterController.isGrounded)
-            moveDirection.y = jumpForce;
+        if (canJump)
+        {
+            jumpBufferTimeCounter = jumpBufferTime;
+        }
+           
     }
+
+    private void ExecuteJump()
+    {
+        if (!canJump) return;
+
+        if (jumpBufferTimeCounter > 0f && coyoteTimeCounter > 0f) 
+        {
+            moveDirection.y = Mathf.Sqrt(2f * gravity * maxJumpHeight);
+
+            jumpBufferTimeCounter = 0f;
+            coyoteTimeCounter = 0f;
+        }
+    }
+
+    private void OnJumpReleased()
+    {
+        if (moveDirection.y > 0)
+        {
+            moveDirection.y *= 0.5f;
+        }
+    }
+
+    private void OnSprintAction(InputAction.CallbackContext ctx)
+    {
+        
+        if (ctx.performed)
+        {
+            isSprintingInput = true; 
+
+           
+            if (canDive && state == MovementState.air && !hasDived && (!useStamina || currentStamina >= diveStaminaCost))
+            {
+                StartCoroutine(PerformDive());
+            }
+        }
+        
+        else if (ctx.canceled)
+        {
+            isSprintingInput = false; 
+        }
+    }
+
 
     private void HandleCrouch()
     {
+        // YENÝ: Asýlýyken eðilme tuþuna basarsa tutunmayý býrakýr ve düþer
+        if (state == MovementState.hanging) { state = MovementState.air; return; }
+
         if (!canCrouch || !characterController.isGrounded || duringCrouchAnimation) return;
-            StartCoroutine(CrouchStand());
+        StartCoroutine(CrouchStand());
     }
 
     private void HandleHeadBob()
@@ -301,7 +431,7 @@ public class FirstPersonController : MonoBehaviour
             timer += Time.deltaTime * (isCrouching ? crouchBobSpeed : IsSprinting ? sprintBobSpeed : walkBobSpeed);
             playerCamera.transform.localPosition = new Vector3(
                 playerCamera.transform.localPosition.x,
-                defaultYPos + Mathf.Sin(timer) * (isCrouching ? crouchBobAmount: IsSprinting ? sprintBobAmount: walkBobAmount),
+                currentYPos + Mathf.Sin(timer) * (isCrouching ? crouchBobAmount: IsSprinting ? sprintBobAmount: walkBobAmount),
                 playerCamera.transform.localPosition.z);
         }
 
@@ -309,7 +439,7 @@ public class FirstPersonController : MonoBehaviour
 
     private void HandleStamina()
     {
-        if(IsSprinting && rawInput.magnitude > 0.1f)
+        if(state == MovementState.sprinting && rawInput.magnitude > 0.1f)
         {
             if (regeneratingStamina != null)
             {
@@ -377,7 +507,7 @@ public class FirstPersonController : MonoBehaviour
     private void Handle_Footsteps()
     {
         if (!characterController.isGrounded) return;
-        if (rawInput.magnitude > 0.1f) return;
+        if (rawInput.magnitude < 0.1f) return;
 
         footstepTimer -= Time.deltaTime;
         
@@ -408,6 +538,49 @@ public class FirstPersonController : MonoBehaviour
         
     }
 
+    private void HandleLedgeDetection()
+    {
+        if (!canClimb || characterController.isGrounded || state == MovementState.dive || state == MovementState.climbing || state == MovementState.hanging) return;
+
+        Vector3 rayStart = transform.position + Vector3.up * climbRayHeight;
+
+        if (Physics.Raycast(rayStart, transform.forward, out RaycastHit forwardHit, climbRayLength, climbableLayer))
+        {
+            Vector3 downRayStart = forwardHit.point + (transform.forward * 0.05f) + (Vector3.up * climbDownRayHeight);
+
+            if (Physics.Raycast(downRayStart, Vector3.down, out RaycastHit downHit, climbDownRayHeight, climbableLayer))
+            {
+                currentLedgePoint = downHit.point;
+                currentLedgeNormal = forwardHit.normal;
+                EvaluateClimbIntention();
+            }
+        }
+    }
+
+    private void HandleHanging()
+    {
+
+        if (state != MovementState.hanging) return;
+
+        // Asýlýyken W'ya basarsa güvenle týrman
+        if (rawInput.y > 0)
+        {
+            StartCoroutine(PerformClimb(currentLedgePoint));
+        }
+    }
+
+    private void EvaluateClimbIntention()
+    {
+        if (rawInput.y > 0 && IsSprinting)
+        {
+            StartCoroutine(PerformClimb(currentLedgePoint));
+        }
+        else 
+        {
+            StartCoroutine(PerformHang(currentLedgePoint, currentLedgeNormal));
+        }
+    }
+
     private void ApplyDamage(float dmg)
     {
         currentHealth -= dmg;
@@ -433,14 +606,32 @@ public class FirstPersonController : MonoBehaviour
 
     private void ApplyFinalMovements()
     {
-        if (!characterController.isGrounded)
-            moveDirection.y -= gravity * Time.deltaTime;
+        if (!characterController.isGrounded && state != MovementState.dive && state != MovementState.hanging && state != MovementState.climbing)
+        {
+            
+            if (moveDirection.y < 0)
+            {
+                moveDirection.y -= gravity * fallMultiplier * Time.deltaTime;
+            }
+            else if (moveDirection.y > 0 && !jumpAction.IsPressed()) 
+            {
+                moveDirection.y -= gravity * lowJumpMultiplier * Time.deltaTime;
+            }
+            else
+            {
+                moveDirection.y -= gravity * Time.deltaTime;
+            }
+        }
+        else if (characterController.isGrounded && moveDirection.y < 0)
+        {
+            moveDirection.y = -2f;
+        }
 
         if (WillSlideOnSlopes && IsSliding)
-            moveDirection += new Vector3(hitPointNormal.x, -hitPointNormal.y, hitPointNormal.z) * slopeSpeed ;
-
+            moveDirection += new Vector3(hitPointNormal.x, -hitPointNormal.y, hitPointNormal.z) * slopeSpeed;
 
         characterController.Move(moveDirection * Time.deltaTime);
+
     }
 
     private IEnumerator CrouchStand()
@@ -454,11 +645,15 @@ public class FirstPersonController : MonoBehaviour
         float currentHeight = characterController.height;
         Vector3 targetCenter = isCrouching ? standingCenter : crouchingCenter;
         Vector3 currentCenter = characterController.center;
+        float targetCamHeight = isCrouching ? defaultYPos : crouchYPos;
+        float startCamHeight = currentYPos;
 
         while (timeElapsed < timeToCrouch)
         {
             characterController.height = Mathf.Lerp(currentHeight, targetHeight, timeElapsed / timeToCrouch);
             characterController.center = Vector3.Lerp(currentCenter, targetCenter, timeElapsed / timeToCrouch);
+            currentYPos = Mathf.Lerp(startCamHeight, targetCamHeight, timeElapsed / timeToCrouch);
+            playerCamera.transform.localPosition = new Vector3(playerCamera.transform.localPosition.x,currentYPos,playerCamera.transform.localPosition.z);
             timeElapsed += Time.deltaTime;
             yield return null;
         }
@@ -527,5 +722,74 @@ public class FirstPersonController : MonoBehaviour
         }
 
         regeneratingStamina = null;
+    }
+
+    private IEnumerator PerformDive()
+    {
+        isDiving = true;
+        hasDived = true;
+
+        if (useStamina)
+        {
+            currentStamina -= diveStaminaCost;
+            OnStaminaChance?.Invoke(currentStamina);
+        }
+        
+
+        Vector3 diveDirection = (transform.forward *currenInput.x + transform.right * currenInput.y).normalized;
+
+        if (diveDirection == Vector3.zero)
+            diveDirection = transform.forward;
+
+        float startTime = Time.time;
+
+        while (Time.time < startTime + diveDuration)
+        {
+            moveDirection = diveDirection * diveSpeed;
+            moveDirection.y = 0;
+
+            yield return null;
+        }
+
+        isDiving = false;
+    }
+
+    private IEnumerator PerformClimb(Vector3 targetPosition)
+    {
+        state = MovementState.climbing;
+
+        Vector3 finalPosition = targetPosition + new Vector3(0, characterController.height / 2f,0);
+
+        while (Vector3.Distance(transform.position, finalPosition) > 0.1f)
+        {
+            Vector3 climpDirection = (finalPosition - transform.position).normalized;
+            characterController.Move(climpDirection* climbSpeed * Time.deltaTime);
+            yield return null;
+        }
+
+        state = MovementState.walking;
+    }
+
+    private IEnumerator PerformHang(Vector3 targetPosition, Vector3 wallNormal)
+    {
+        state = MovementState.hanging;
+        moveDirection = Vector3.zero;
+
+        // Maymunun durmasý gereken yer: Kenarýn biraz aþaðýsý ve duvarýn dýþ cephesi
+        Vector3 hangOffset = (wallNormal * 0.15f) - new Vector3(0, characterController.height / 1.5f, 0);
+        Vector3 hangPosition = targetPosition + hangOffset;
+
+        float timeElapsed = 0;
+        float snapTime = 0.15f; // Havadan duvara mýknatýs gibi çekilme süresi
+
+        while (timeElapsed < snapTime)
+        {
+            // Karakteri havada donduðu yerden alýp, tam kenara yumuþakça oturt
+            Vector3 snapDirection = (hangPosition - transform.position);
+            characterController.Move(snapDirection * 10f * Time.deltaTime);
+
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
     }
 }
