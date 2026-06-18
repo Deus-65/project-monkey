@@ -7,9 +7,9 @@ public class PointerIcon : MonoBehaviour
     private Image pointerImage;
 
     [Header("Kursor Görselleri")]
-    public Sprite emptyPointer;      // Boşluğa bakarken (Örn: Nokta)
-    public Sprite possiblePointer;   // Etkileşime geçilebilir (Örn: El işareti veya E tuşu)
-    public Sprite impossiblePointer; // Kilitli veya etkileşilemez durum (Örn: Çarpı)
+    public Sprite emptyPointer;      // Örn: Sadece ufak bir nokta
+    public Sprite possiblePointer;   // Örn: El işareti
+    public Sprite impossiblePointer; // Örn: Çarpı işareti
 
     private void Awake()
     {
@@ -20,17 +20,13 @@ public class PointerIcon : MonoBehaviour
     {
         if (PointerPromptManager.Instance != null)
         {
-            // Manager'a abone ol
             PointerPromptManager.Instance.OnPointerStateChanged += UpdatePointerIcon;
-
-            // Başlangıçta doğru ikonu koy
             UpdatePointerIcon(PointerPromptManager.Instance.CurrentState);
         }
     }
 
     private void OnDestroy()
     {
-        // Aboneliği iptal et
         if (PointerPromptManager.Instance != null)
         {
             PointerPromptManager.Instance.OnPointerStateChanged -= UpdatePointerIcon;
@@ -51,7 +47,6 @@ public class PointerIcon : MonoBehaviour
                 pointerImage.sprite = impossiblePointer;
                 break;
         }
-
         pointerImage.SetNativeSize();
     }
 }

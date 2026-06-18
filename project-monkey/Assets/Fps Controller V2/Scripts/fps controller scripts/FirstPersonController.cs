@@ -477,38 +477,63 @@ public class FirstPersonController : MonoBehaviour
         zoomRoutine = StartCoroutine(ToggleZoom(isEnter));
     }
 
+    // 1. Iþýn yollayýp objeyi algýlayan ve Kursorü deðiþtiren metot (Update içinde çalýþmalý)
     private void HandleInteractionCheck()
     {
         if (Physics.Raycast(playerCamera.ViewportPointToRay(interactionRayPoint), out RaycastHit hit, interactionDistance))
         {
-            if(hit.collider.gameObject.layer == 9 && (currentInteractable == null || hit.collider.gameObject.GetEntityId() != currentInteractable.GetEntityId())) 
+            // Eðer çarptýðýmýz obje 9. Katmandaysa (Interactable layer)
+            if (hit.collider.gameObject.layer == 9)
             {
-                hit.collider.TryGetComponent(out currentInteractable);
-                
-                if(currentInteractable)
-                    currentInteractable.OnFocus();
+                if (currentInteractable == null || hit.collider.gameObject.GetInstanceID() != currentInteractable.gameObject.GetInstanceID())
+                {
+                    hit.collider.TryGetComponent(out currentInteractable);
+                    if (currentInteractable != null)
+                    {
+                        currentInteractable.OnFocus();
 
-                // KURSORU DEÐÝÞTÝR: Etkileþime girilebilir bir þeye bakýyoruz!
-                PointerPromptManager.Instance.ChangePointerState(PointerPromptManager.PointerState.Possible);
+                        // KURSORU DEÐÝÞTÝR: Etkileþilebilir bir objeye bakýyoruz!
+                        if (PointerPromptManager.Instance != null)
+                            PointerPromptManager.Instance.ChangePointerState(PointerPromptManager.PointerState.Possible);
+                    }
+                }
+            }
+            else // Objeden baþka bir þeye (duvara vs) baktýk
+            {
+                ResetInteraction();
             }
         }
-        else if (currentInteractable)
+        else // Boþluða baktýk
+        {
+            ResetInteraction();
+        }
+    }
+
+    // Güvenli sýfýrlama metodu
+    private void ResetInteraction()
+    {
+        if (currentInteractable != null)
         {
             currentInteractable.OnLoseFocus();
             currentInteractable = null;
 
             // KURSORU SIFIRLA: Artýk boþluða bakýyoruz!
-            PointerPromptManager.Instance.ChangePointerState(PointerPromptManager.PointerState.Empty);
+            if (PointerPromptManager.Instance != null)
+                PointerPromptManager.Instance.ChangePointerState(PointerPromptManager.PointerState.Empty);
         }
     }
 
+    // 2. YENÝ INPUT SÝSTEMÝ ÝLE ETKÝLEÞÝM: (Input.GetKeyDown BURADAN SÝLÝNDÝ)
+    // Bu metot artýk Update içinde deðil, OnEnable içindeki 'interactKeyborad.performed += ...' eventi ile tetiklenecek!
     private void HandleInteactionInput()
     {
-        if (canInteract && currentInteractable != null && Physics.Raycast(playerCamera.ViewportPointToRay(interactionRayPoint), out RaycastHit hit, interactionDistance, interactionLayer))
+        if (currentInteractable != null && Physics.Raycast(playerCamera.ViewportPointToRay(interactionRayPoint), out RaycastHit hit, interactionDistance, interactionLayer))
         {
             currentInteractable.OnInteract();
+            ResetInteraction(); // Eþyayý aldýysak/kullandýysak kursorü ve veriyi sýfýrla
         }
     }
+
 
     private void Handle_Footsteps()
     {
