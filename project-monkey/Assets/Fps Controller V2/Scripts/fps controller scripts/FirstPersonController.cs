@@ -487,12 +487,18 @@ public class FirstPersonController : MonoBehaviour
                 
                 if(currentInteractable)
                     currentInteractable.OnFocus();
+
+                // KURSORU DEÐÝÞTÝR: Etkileþime girilebilir bir þeye bakýyoruz!
+                PointerPromptManager.Instance.ChangePointerState(PointerPromptManager.PointerState.Possible);
             }
         }
         else if (currentInteractable)
         {
             currentInteractable.OnLoseFocus();
             currentInteractable = null;
+
+            // KURSORU SIFIRLA: Artýk boþluða bakýyoruz!
+            PointerPromptManager.Instance.ChangePointerState(PointerPromptManager.PointerState.Empty);
         }
     }
 
