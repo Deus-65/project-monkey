@@ -34,6 +34,10 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField] private float airAcceleration = 3f;
     private Vector3 currentLedgeNormal;
 
+    [Header("Kamera & Fare Ayarlarý")]
+    [Tooltip("Fare dönüþ hýzýný buradan ayarlayabilirsin (Örn: 0.1 veya 0.5)")]
+    public float lookSensitivity = 0.2f; // Baþlangýç için düþük bir deðer veriyoruz
+
     [Header("Look Prameters")]
     [SerializeField, Range(1, 10)] private float lookSpeedX = 2.0f;
     [SerializeField, Range(1, 10)] private float lookSpeedY = 2.0f;
@@ -355,11 +359,17 @@ public class FirstPersonController : MonoBehaviour
 
     private void HandleMouseLook()
     {
-        rotationX -= mouseInput.y * lookSpeedY;
+        // 1. Yeni Input sisteminden gelen ham veriyi Hassasiyet (Sensitivity) çarpanýmýzla yumuþatýyoruz
+        float mouseX = mouseInput.x * lookSensitivity;
+        float mouseY = mouseInput.y * lookSensitivity;
+
+        // 2. Yukarý/Aþaðý bakma (X ekseninde dönüþ ve sýnýrlandýrma)
+        rotationX -= mouseY * lookSpeedY;
         rotationX = Mathf.Clamp(rotationX, -upperLookLimit, lowerLookLimit);
         playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
 
-        transform.rotation *= Quaternion.Euler(0, mouseInput.x * lookSpeedX, 0);
+        // 3. Saða/Sola bakma (Karakterin kendi Y ekseni etrafýnda dönüþü)
+        transform.rotation *= Quaternion.Euler(0, mouseX * lookSpeedX, 0);
     }
 
     private void HandelJump() 
@@ -492,9 +502,7 @@ public class FirstPersonController : MonoBehaviour
                     {
                         currentInteractable.OnFocus();
 
-                        // KURSORU DEÐÝÞTÝR: Etkileþilebilir bir objeye bakýyoruz!
-                        if (PointerPromptManager.Instance != null)
-                            PointerPromptManager.Instance.ChangePointerState(PointerPromptManager.PointerState.Possible);
+                       
                     }
                 }
             }
@@ -558,7 +566,8 @@ public class FirstPersonController : MonoBehaviour
                     case "Footsteps/GRASS":
                         footstepAudioSource.PlayOneShot(grassClips[UnityEngine.Random.Range(0, grassClips.Length - 1)]);
                         break;
-                    default: 
+                    default:
+                        footstepAudioSource.PlayOneShot(metalClips[UnityEngine.Random.Range(0, metalClips.Length - 1)]);
                         break;
                     
                 } 
