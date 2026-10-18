@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: bc8eee13f3e465b42924ffc61545fa7b
   - enabled: 1
-    path: Assets/Scenes/Circus Tent Basement.unity
+    path: Assets/Scenes/Basement.unity
     guid: cb03a30d7e882844cb77e95e7c784385
   - enabled: 1
     path: Assets/Scenes/tent.unity
