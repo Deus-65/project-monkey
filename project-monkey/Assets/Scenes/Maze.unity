@@ -6332,6 +6332,7 @@ MonoBehaviour:
   - {fileID: 807429325}
   - {fileID: 807429324}
   - {fileID: 807429323}
+  - {fileID: 1913033341}
   - {fileID: 2049446904}
   - {fileID: 2049446903}
   - {fileID: 2049446902}
@@ -8037,7 +8038,7 @@ MonoBehaviour:
     _bakeStatus: 0
     _validationLevel: 2
     _name: grass-mesh
-    _textureBakeResults: {fileID: 0}
+    _textureBakeResults: {fileID: 11400000, guid: ca97d258ddcebfd4e9d3df13f0ebf8c9, type: 2}
     _resultSceneObject: {fileID: 807429322}
     _targetRenderer: {fileID: 1913033342}
     _LOG_LEVEL: 3
