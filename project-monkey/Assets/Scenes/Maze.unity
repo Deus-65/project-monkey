@@ -4340,7 +4340,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &57961146
 Transform:
   m_ObjectHideFlags: 0
@@ -21988,119 +21988,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: -7029948723529949830, guid: 3d74afd3b9ed5c94aaf059f6f3caf0ea, type: 3}
   m_PrefabInstance: {fileID: 264249271}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &265188905
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 265188907}
-  - component: {fileID: 265188906}
-  m_Layer: 0
-  m_Name: grassbaker
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &265188906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 265188905}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fb2e0d8bc810bb48b63c91af80d5f17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: MeshBakerCore::MB3_MeshBaker
-  sortAxis: {x: 0, y: 0, z: 0}
-  version: 100
-  objsToMesh: []
-  useObjsToMeshFromTexBaker: 0
-  _clearBuffersAfterBake: 0
-  bakeAssetsInPlaceFolderPath: 
-  resultPrefab: {fileID: 0}
-  resultPrefabLeaveInstanceInSceneAfterBake: 0
-  parentSceneObject: {fileID: 0}
-  _meshCombiner:
-    _bakeStatus: 0
-    _validationLevel: 2
-    _name: 
-    _textureBakeResults: {fileID: 0}
-    _resultSceneObject: {fileID: 0}
-    _targetRenderer: {fileID: 0}
-    _LOG_LEVEL: 3
-    _settingsHolder: {fileID: 0}
-    _outputOption: 0
-    _renderType: 0
-    _lightmapOption: 1
-    _doNorm: 1
-    _doTan: 1
-    _doCol: 0
-    _doUV: 1
-    _doUV3: 0
-    _doUV4: 0
-    _doUV5: 0
-    _doUV6: 0
-    _doUV7: 0
-    _doUV8: 0
-    _doBlendShapes: 0
-    _pivotLocationType: 0
-    _pivotLocation: {x: 0, y: 0, z: 0}
-    _clearBuffersAfterBake: 0
-    _optimizeAfterBake: 1
-    _uv2UnwrappingParamsHardAngle: 60
-    _uv2UnwrappingParamsPackMargin: 0.005
-    _smrNoExtraBonesWhenCombiningMeshRenderers: 0
-    _smrMergeBlendShapesWithSameNames: 0
-    _assignToMeshCustomizer: {fileID: 0}
-    _meshAPItoUse: 0
-    objectsInCombinedMesh: []
-    lightmapIndex: -1
-    mbDynamicObjectsInCombinedMesh: []
-    channelsLastBake: 0
-    verts: []
-    normals: []
-    tangents: []
-    uvs: []
-    uvsSliceIdx: []
-    uv2s: []
-    uv3s: []
-    uv4s: []
-    uv5s: []
-    uv6s: []
-    uv7s: []
-    uv8s: []
-    colors: []
-    submeshTris: []
-    bindPoses: []
-    bones: []
-    blendShapes: []
-    bufferDataFromPrevious:
-      numVertsBaked: 0
-      meshVerticesShift: {x: 0, y: 0, z: 0}
-      meshVerticiesWereShifted: 0
-    _meshBirth: 0
-    _mesh: {fileID: 0}
---- !u!4 &265188907
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 265188905}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 66.696, y: 0.83607, z: 117.83011}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &265853987
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -149887,4 +149774,3 @@ SceneRoots:
   - {fileID: 996356199}
   - {fileID: 1224992388}
   - {fileID: 57961146}
-  - {fileID: 265188907}
