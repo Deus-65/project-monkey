@@ -15,6 +15,15 @@ EditorBuildSettings:
     path: Assets/Scenes/tent.unity
     guid: 6b782d300f59b16408cdd39273b7f100
   - enabled: 1
+    path: Assets/Scenes/playground.unity
+    guid: ccdfc314ffd4e7840a446720c698ba70
+  - enabled: 1
+    path: Assets/Scenes/Maze.unity
+    guid: 16ed2677a50acdd4baa6800d9f8a57d1
+  - enabled: 1
+    path: Assets/Scenes/tent 1.unity
+    guid: 215008f7cd357364db3f989c160914fa
+  - enabled: 1
     path: Assets/Scenes/end.unity
     guid: 10676b54877a8e34792a2f49c4fc8dad
   m_configObjects:

@@ -37451,6 +37451,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1634122413}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &229309361 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2717813923478022785, guid: d66a88ef6318e8844bf1f2ccf39cc60a, type: 3}
+  m_PrefabInstance: {fileID: 1939047184}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1 &229937427 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e4cb1d69e42ff054e988fdd8feceeffe, type: 3}
@@ -153543,6 +153554,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f806893d62434f943bd39e3ba4935ef9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 828112689}
+    - targetCorrespondingSourceObject: {fileID: 4423045620967985251, guid: f806893d62434f943bd39e3ba4935ef9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 828112692}
+    - targetCorrespondingSourceObject: {fileID: 4423045620967985251, guid: f806893d62434f943bd39e3ba4935ef9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 828112691}
+    - targetCorrespondingSourceObject: {fileID: 4423045620967985251, guid: f806893d62434f943bd39e3ba4935ef9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 828112696}
   m_SourcePrefab: {fileID: 100100000, guid: f806893d62434f943bd39e3ba4935ef9, type: 3}
 --- !u!4 &828112687 stripped
 Transform:
@@ -153576,6 +153596,73 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 370677763384744092, guid: f806893d62434f943bd39e3ba4935ef9, type: 3}
+--- !u!1 &828112690 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4423045620967985251, guid: f806893d62434f943bd39e3ba4935ef9, type: 3}
+  m_PrefabInstance: {fileID: 828112686}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &828112691
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 828112690}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d972e3e79baf2fe41af93092483d7ff3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &828112692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 828112690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2fd188bd900a664ca8451fe39d8ef2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelTransitionButton
+  interactSound: {fileID: 0}
+  nextSceneName: playground
+  buttonAnimator: {fileID: 828112691}
+  pushTriggerName: Push
+  animationWaitTime: 1
+  fadeImage: {fileID: 229309361}
+  fadeDuration: 1.5
+--- !u!65 &828112696
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 828112690}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.04999999, y: 0.75, z: 0.39999995}
+  m_Center: {x: -9.313217e-11, y: 0.375, z: 0.20000361}
 --- !u!1 &829676696 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4336663996511517750, guid: 9af69b6797f67e245a2cdb9926cd9e59, type: 3}
@@ -193192,16 +193279,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 406239176}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2fd188bd900a664ca8451fe39d8ef2c, type: 3}
+  m_Script: {fileID: 11500000, guid: 8739376367ad33946849dec690ddcb71, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LevelTransitionButton
-  interactSound: {fileID: 0}
-  nextSceneName: end
-  buttonAnimator: {fileID: 533471445}
-  pushTriggerName: Push
-  animationWaitTime: 1
-  fadeImage: {fileID: 1939047185}
-  fadeDuration: 1.5
+  m_EditorClassIdentifier: Assembly-CSharp::DoorInteractable
+  requiredItem: {fileID: 11400000, guid: 49bb074000adefd4797024a3076b86d0, type: 2}
+  doorAnimator: {fileID: 533471445}
+  openTriggerName: Open
 --- !u!1001 &1069951081
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -250741,6 +250824,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f806893d62434f943bd39e3ba4935ef9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1511918076}
+    - targetCorrespondingSourceObject: {fileID: 4423045620967985251, guid: f806893d62434f943bd39e3ba4935ef9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1511918079}
+    - targetCorrespondingSourceObject: {fileID: 4423045620967985251, guid: f806893d62434f943bd39e3ba4935ef9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1511918078}
+    - targetCorrespondingSourceObject: {fileID: 4423045620967985251, guid: f806893d62434f943bd39e3ba4935ef9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1511918083}
   m_SourcePrefab: {fileID: 100100000, guid: f806893d62434f943bd39e3ba4935ef9, type: 3}
 --- !u!4 &1511918074 stripped
 Transform:
@@ -250774,6 +250866,73 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 370677763384744092, guid: f806893d62434f943bd39e3ba4935ef9, type: 3}
+--- !u!1 &1511918077 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4423045620967985251, guid: f806893d62434f943bd39e3ba4935ef9, type: 3}
+  m_PrefabInstance: {fileID: 1511918073}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1511918078
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1511918077}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a5e72e1776601e04b931bd2d6498b06b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1511918079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1511918077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2fd188bd900a664ca8451fe39d8ef2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelTransitionButton
+  interactSound: {fileID: 0}
+  nextSceneName: playground
+  buttonAnimator: {fileID: 1511918078}
+  pushTriggerName: Push
+  animationWaitTime: 1
+  fadeImage: {fileID: 229309361}
+  fadeDuration: 1.5
+--- !u!65 &1511918083
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1511918077}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.04999999, y: 0.75, z: 0.39999995}
+  m_Center: {x: 0.000003814604, y: 0.375, z: 0.20000361}
 --- !u!1001 &1512144402
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -273349,16 +273508,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 774025752}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2fd188bd900a664ca8451fe39d8ef2c, type: 3}
+  m_Script: {fileID: 11500000, guid: 8739376367ad33946849dec690ddcb71, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LevelTransitionButton
-  interactSound: {fileID: 0}
-  nextSceneName: end
-  buttonAnimator: {fileID: 533471445}
-  pushTriggerName: Push
-  animationWaitTime: 1
-  fadeImage: {fileID: 1939047185}
-  fadeDuration: 1.5
+  m_EditorClassIdentifier: Assembly-CSharp::DoorInteractable
+  requiredItem: {fileID: 11400000, guid: 49bb074000adefd4797024a3076b86d0, type: 2}
+  doorAnimator: {fileID: 533471445}
+  openTriggerName: Open
 --- !u!1001 &1668912650
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -301028,15 +301183,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7172083987391913302, guid: d66a88ef6318e8844bf1f2ccf39cc60a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 37.12
+      value: 38.363
       objectReference: {fileID: 0}
     - target: {fileID: 7172083987391913302, guid: d66a88ef6318e8844bf1f2ccf39cc60a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.039
+      value: 2.071
       objectReference: {fileID: 0}
     - target: {fileID: 7172083987391913302, guid: d66a88ef6318e8844bf1f2ccf39cc60a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 18.82
+      value: 107.239
       objectReference: {fileID: 0}
     - target: {fileID: 7172083987391913302, guid: d66a88ef6318e8844bf1f2ccf39cc60a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -301054,22 +301209,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fps V2.1
       objectReference: {fileID: 0}
+    - target: {fileID: 8465348439370420146, guid: d66a88ef6318e8844bf1f2ccf39cc60a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d66a88ef6318e8844bf1f2ccf39cc60a, type: 3}
---- !u!114 &1939047185 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2717813923478022785, guid: d66a88ef6318e8844bf1f2ccf39cc60a, type: 3}
-  m_PrefabInstance: {fileID: 1939047184}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1001 &1939900124
 PrefabInstance:
   m_ObjectHideFlags: 0
