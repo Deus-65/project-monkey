@@ -24,11 +24,20 @@ MonoBehaviour:
     m_path: Assets/Scenes/Menu.unity
     m_guid: bc8eee13f3e465b42924ffc61545fa7b
   - m_enabled: 1
-    m_path: Assets/Scenes/Circus Tent Basement.unity
+    m_path: Assets/Scenes/Basement.unity
     m_guid: cb03a30d7e882844cb77e95e7c784385
   - m_enabled: 1
     m_path: Assets/Scenes/tent.unity
     m_guid: 6b782d300f59b16408cdd39273b7f100
+  - m_enabled: 1
+    m_path: Assets/Scenes/playground.unity
+    m_guid: ccdfc314ffd4e7840a446720c698ba70
+  - m_enabled: 1
+    m_path: Assets/Scenes/Maze.unity
+    m_guid: 16ed2677a50acdd4baa6800d9f8a57d1
+  - m_enabled: 1
+    m_path: Assets/Scenes/tent 1.unity
+    m_guid: 215008f7cd357364db3f989c160914fa
   - m_enabled: 1
     m_path: Assets/Scenes/end.unity
     m_guid: 10676b54877a8e34792a2f49c4fc8dad

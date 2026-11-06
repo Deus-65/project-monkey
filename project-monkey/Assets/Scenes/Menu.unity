@@ -1030,7 +1030,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbadc4af4f898c040bd87f8e19d8f6eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenuManager
-  gameSceneName: Circus Tent Basement
+  gameSceneName: Basement
 --- !u!4 &1627281015
 Transform:
   m_ObjectHideFlags: 0
